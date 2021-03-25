@@ -21,14 +21,14 @@ public class Doador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
+	@NotNull(message = "Campo descrição não pode ser Nulo")
 	@Size(min = 6, max = 50)
 	private String nome;
 	@NotNull
 	@Size(min = 10, max = 50)
 	private String email;
 	@NotNull
-	@Size(min = 8, max = 15)
+	@Size(min = 8, max = 15, message = "A senha deve ter entre 8 à 15 caracteres")
 	private String senha;
 	@NotNull
 	@Size(min = 6, max = 100)

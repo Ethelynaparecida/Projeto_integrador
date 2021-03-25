@@ -1,5 +1,6 @@
 package br.com.doafood.doafood.repository;
 
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,4 @@ import br.com.doafood.doafood.model.Comunidade;
 public interface ComunidadeRepository extends JpaRepository<Comunidade, Long>{
 	public List<Comunidade>findAllByNomeContainingIgnoreCase (String Nome);
 	public List<Comunidade>findByDescricaoContainingIgnoreCase(String descricao);
-}
+

@@ -1,5 +1,6 @@
 package br.com.doafood.doafood.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.doafood.doafood.model.Comunidade;
 import br.com.doafood.doafood.repository.ComunidadeRepository;
+
 
 @RestController
 @RequestMapping("/categoria")
@@ -56,4 +58,4 @@ public class ComunidadeController {
 	public void deleteCategoria(@PathVariable long id){
 		repository.deleteById(id);
 	}
-}
+
