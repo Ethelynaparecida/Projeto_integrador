@@ -1,9 +1,12 @@
 package br.com.doafood.doafood.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -14,28 +17,33 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tb_comunidade")
 public class Comunidade {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	@Size(min = 6, max = 50)
 	private String nome;
-	
+
 	@NotNull
 	@Size(min = 50, max = 250)
 	private String descricao;
-	
+
 	@NotNull
-		@Size(min = 6, max = 100)
+	@Size(min = 6, max = 100)
 	private String bairro;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("comunidade")
 	private Doador doador;
 
-	
+	@ManyToOne
+	@JsonIgnoreProperties("comunidade")
+	private Publicacao publicacao;
+
+	@ManyToMany
+	private Set<Recebedor> rcebedor = new HashSet<>();
 
 	public Doador getDoador() {
 		return doador;
