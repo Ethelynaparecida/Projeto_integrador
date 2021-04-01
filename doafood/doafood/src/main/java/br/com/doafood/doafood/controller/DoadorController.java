@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.doafood.doafood.model.Doador;
 import br.com.doafood.doafood.repository.DoadorRepository;
@@ -41,12 +42,12 @@ public class DoadorController {
 				orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping("/descricao/{descricao}")
-	private ResponseEntity<List<Doador>> findByDescricaoCategoria(@PathVariable String descricao){
+	@GetMapping("/bairro/{bairro}")
+	private ResponseEntity<List<Doador>> findByDescricaoCategoria(@PathVariable String bairro){
 
-		return ResponseEntity.ok(repository.findByBairroContainingIgnoreCase(descricao));
+		return ResponseEntity.ok(repository.findByBairroContainingIgnoreCase(bairro));
 
-		return ResponseEntity.ok(repository.findByDescricaoContainingIgnoreCase(descricao));
+		
 
 	}
 	
