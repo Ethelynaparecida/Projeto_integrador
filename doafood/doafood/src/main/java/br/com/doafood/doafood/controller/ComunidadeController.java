@@ -21,7 +21,7 @@ import br.com.doafood.doafood.repository.ComunidadeRepository;
 
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/comunidade")
 @CrossOrigin(origins = "*" , allowedHeaders = "*")
 public class ComunidadeController {
 	@Autowired
@@ -58,4 +58,5 @@ public class ComunidadeController {
 	public void deleteCategoria(@PathVariable long id){
 		repository.deleteById(id);
 	}
+}
 

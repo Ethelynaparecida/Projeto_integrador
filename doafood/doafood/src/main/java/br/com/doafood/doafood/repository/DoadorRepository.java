@@ -15,9 +15,5 @@ public interface DoadorRepository extends JpaRepository<Doador, Long> {
 	public List<Doador> findByBairroContainingIgnoreCase(String bairro);
 
 
-public interface DoadorRepository extends JpaRepository<Doador, Long>{
-	public List<Doador> findAllByNomeContainingIgnoreCase(String nome);
-	public List<Doador>findByDescricaoContainingIgnoreCase(String descricao);
-	
 
 }
