@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.doafood.doafood.model.Doador;
 import br.com.doafood.doafood.model.Recebedor;
 import br.com.doafood.doafood.repository.RecebedorRepository;
 
-@RequestMapping("/compra")
+@RequestMapping("/recebedor")
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 

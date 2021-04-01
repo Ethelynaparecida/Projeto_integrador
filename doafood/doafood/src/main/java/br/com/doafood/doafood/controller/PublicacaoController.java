@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.doafood.doafood.model.Publicacao;
 import br.com.doafood.doafood.repository.PublicacaoRepository;
 
-@RequestMapping("/compra")
+@RequestMapping("/publicacao")
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 
