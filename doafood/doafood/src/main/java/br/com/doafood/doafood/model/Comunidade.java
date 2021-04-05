@@ -43,7 +43,7 @@ public class Comunidade {
 	private Publicacao publicacao;
 
 	@ManyToMany
-	private Set<Recebedor> rcebedor = new HashSet<>();
+	private Set<Recebedor> recebedor = new HashSet<>();
 
 	public Doador getDoador() {
 		return doador;
@@ -83,6 +83,11 @@ public class Comunidade {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public void comunidade(Doador doador2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
