@@ -1,5 +1,6 @@
 package br.com.doafood.doafood.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,7 +40,70 @@ public class Recebedor {
 	private Integer telefone;
 	
 	@ManyToMany
-	private Set<Comunidade> comunidade = new HashSet<>();
-	
+	private List<Comunidade> comunidade = new ArrayList<>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public Integer getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Integer telefone) {
+		this.telefone = telefone;
+	}
+
+	public List<Comunidade> getComunidade() {
+		return comunidade;
+	}
+
+	public void setComunidade(List<Comunidade> comunidade) {
+		this.comunidade = comunidade;
+	}
 	
 }

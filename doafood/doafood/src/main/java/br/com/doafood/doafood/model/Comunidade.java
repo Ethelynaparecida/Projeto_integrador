@@ -1,6 +1,8 @@
 package br.com.doafood.doafood.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +45,23 @@ public class Comunidade {
 	private Publicacao publicacao;
 
 	@ManyToMany
-	private Set<Recebedor> rcebedor = new HashSet<>();
+	private List<Recebedor> recebedor = new ArrayList();
+
+	public Publicacao getPublicacao() {
+		return publicacao;
+	}
+
+	public void setPublicacao(Publicacao publicacao) {
+		this.publicacao = publicacao;
+	}
+
+	public List<Recebedor> getRecebedor() {
+		return recebedor;
+	}
+
+	public void setRecebedor(List<Recebedor> recebedor) {
+		this.recebedor = recebedor;
+	}
 
 	public Doador getDoador() {
 		return doador;
