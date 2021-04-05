@@ -18,6 +18,4 @@ public interface DoadorRepository extends JpaRepository<Doador, Long> {
 	public Doador findByEmail(String email);
 
 
-
-
 }

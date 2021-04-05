@@ -43,11 +43,19 @@ public class DoadorController {
 	}
 	
 	@GetMapping("/bairro/{bairro}")
+
 	private ResponseEntity<List<Doador>> findByDescricaoCategoria(@PathVariable String bairro){
 
 		return ResponseEntity.ok(repository.findByBairroContainingIgnoreCase(bairro));
 
 		
+
+	private ResponseEntity<List<Doador>> findByBairro(@PathVariable String bairro){
+
+		return ResponseEntity.ok(repository.findByBairroContainingIgnoreCase(bairro));
+
+
+
 
 	}
 	
