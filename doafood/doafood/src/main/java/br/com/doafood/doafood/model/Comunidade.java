@@ -45,6 +45,7 @@ public class Comunidade {
 	private Publicacao publicacao;
 
 	@ManyToMany
+<<<<<<< HEAD
 	private List<Recebedor> recebedor = new ArrayList();
 
 	public Publicacao getPublicacao() {
@@ -62,6 +63,9 @@ public class Comunidade {
 	public void setRecebedor(List<Recebedor> recebedor) {
 		this.recebedor = recebedor;
 	}
+=======
+	private Set<Recebedor> recebedor = new HashSet<>();
+>>>>>>> 1f82111625bc7722f002fbf4201e103d2e4d110a
 
 	public Doador getDoador() {
 		return doador;
@@ -101,6 +105,11 @@ public class Comunidade {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public void comunidade(Doador doador2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
