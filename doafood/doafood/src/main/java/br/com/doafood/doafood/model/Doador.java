@@ -107,4 +107,11 @@ public class Doador {
 		this.cnpj = cnpj;
 	}
 
+	
+
+	public boolean isPresent() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
