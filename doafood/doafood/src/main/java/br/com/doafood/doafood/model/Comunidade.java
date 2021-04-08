@@ -1,10 +1,11 @@
 package br.com.doafood.doafood.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+
+import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,37 +45,15 @@ public class Comunidade {
 	@JsonIgnoreProperties("comunidade")
 	private Publicacao publicacao;
 
-	@ManyToMany
-<<<<<<< HEAD
-	private List<Recebedor> recebedor = new ArrayList();
 
-	public Publicacao getPublicacao() {
-		return publicacao;
-	}
 
-	public void setPublicacao(Publicacao publicacao) {
-		this.publicacao = publicacao;
-	}
+	@ManyToMany(mappedBy = "comunidade", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"comunidade"})
+	private Optional<Recebedor> recebedor;
 
-	public List<Recebedor> getRecebedor() {
-		return recebedor;
-	}
 
-	public void setRecebedor(List<Recebedor> recebedor) {
-		this.recebedor = recebedor;
-	}
-=======
-	private Set<Recebedor> recebedor = new HashSet<>();
->>>>>>> 1f82111625bc7722f002fbf4201e103d2e4d110a
-
-	public Doador getDoador() {
-		return doador;
-	}
-
-	public void setDoador(Doador doador) {
-		this.doador = doador;
-	}
-
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -107,9 +86,30 @@ public class Comunidade {
 		this.bairro = bairro;
 	}
 
-	public void comunidade(Doador doador2) {
-		// TODO Auto-generated method stub
-		
+	public Doador getDoador() {
+		return doador;
 	}
+
+	public void setDoador(Doador doador) {
+		this.doador = doador;
+	}
+
+	public Publicacao getPublicacao() {
+		return publicacao;
+	}
+
+	public void setPublicacao(Publicacao publicacao) {
+		this.publicacao = publicacao;
+	}
+
+	public Optional<Recebedor> getRecebedor() {
+		return recebedor;
+	}
+
+	public void setRecebedor(Optional<Recebedor> optional) {
+		this.recebedor = optional;
+	}
+
+
 
 }

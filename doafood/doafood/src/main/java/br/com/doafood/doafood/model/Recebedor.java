@@ -5,14 +5,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="tb_recebedor")
@@ -39,7 +45,13 @@ public class Recebedor {
 	@NotNull
 	private Integer telefone;
 	
-	@ManyToMany
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+	  name = "inscrito", 
+	  joinColumns = @JoinColumn(name = "comunidade_id"), 
+	  inverseJoinColumns = @JoinColumn(name = "recebedor_id"))
+	@JsonIgnoreProperties("recebedor")
 	private List<Comunidade> comunidade = new ArrayList<>();
 
 	public Long getId() {
@@ -105,5 +117,6 @@ public class Recebedor {
 	public void setComunidade(List<Comunidade> comunidade) {
 		this.comunidade = comunidade;
 	}
+
 	
 }
