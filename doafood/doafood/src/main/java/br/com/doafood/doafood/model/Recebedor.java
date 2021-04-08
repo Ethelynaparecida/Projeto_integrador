@@ -1,5 +1,6 @@
 package br.com.doafood.doafood.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,6 +45,7 @@ public class Recebedor {
 	@NotNull
 	private Integer telefone;
 	
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
 	  name = "inscrito", 

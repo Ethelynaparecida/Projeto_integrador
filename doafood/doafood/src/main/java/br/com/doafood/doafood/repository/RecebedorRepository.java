@@ -1,6 +1,7 @@
 package br.com.doafood.doafood.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -23,5 +24,6 @@ public interface RecebedorRepository extends JpaRepository<Recebedor, Long>{
 	public Optional<Recebedor> findByRecebedor(String recebedor);
 	
 	public Optional<Recebedor> findById(Long id);
+
 
 }

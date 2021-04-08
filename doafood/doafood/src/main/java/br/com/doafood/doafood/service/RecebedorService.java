@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.doafood.doafood.model.Comunidade;
+
 import br.com.doafood.doafood.model.Recebedor;
 import br.com.doafood.doafood.repository.ComunidadeRepository;
 
@@ -17,6 +18,7 @@ import br.com.doafood.doafood.repository.RecebedorRepository;
 public class RecebedorService {
 	@Autowired
 	private RecebedorRepository repository;
+
 	private ComunidadeRepository repositoryComunidade;
 
 	public Optional<Recebedor> cadastrarRecebedor (Recebedor newrecebedor) {
@@ -42,10 +44,12 @@ public class RecebedorService {
 		
 		if (!recebedorExistente.isEmpty()) {
 			comunidadeExistente.setRecebedor(repository.findById(recebedor.getId()));
+
 			return repositoryComunidade.save(comunidadeExistente);
 		}
 		return null;
 	}
+
 
 	public Optional<Recebedor> visualizarPerfil(String recebedor){
 	
@@ -59,3 +63,4 @@ public class RecebedorService {
 
 	}
 }
+
