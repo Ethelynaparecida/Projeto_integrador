@@ -4,14 +4,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="tb_recebedor")
@@ -38,8 +44,77 @@ public class Recebedor {
 	@NotNull
 	private Integer telefone;
 	
-	@ManyToMany
-	private Set<Comunidade> comunidade = new HashSet<>();
-	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+	  name = "inscrito", 
+	  joinColumns = @JoinColumn(name = "comunidade_id"), 
+	  inverseJoinColumns = @JoinColumn(name = "recebedor_id"))
+	@JsonIgnoreProperties("recebedor")
+	private List<Comunidade> comunidade = new ArrayList<>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public Integer getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Integer telefone) {
+		this.telefone = telefone;
+	}
+
+	public List<Comunidade> getComunidade() {
+		return comunidade;
+	}
+
+	public void setComunidade(List<Comunidade> comunidade) {
+		this.comunidade = comunidade;
+	}
+
 	
 }

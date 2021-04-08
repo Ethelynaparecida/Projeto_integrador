@@ -48,7 +48,7 @@ public class DoadorController {
 
 		return ResponseEntity.ok(repository.findByBairroContainingIgnoreCase(bairro));
 
-		
+	}
 
 	private ResponseEntity<List<Doador>> findByBairro(@PathVariable String bairro){
 

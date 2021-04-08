@@ -1,8 +1,9 @@
 package br.com.doafood.doafood.model;
 
-import java.util.HashSet;
-import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,17 +43,15 @@ public class Comunidade {
 	@JsonIgnoreProperties("comunidade")
 	private Publicacao publicacao;
 
-	@ManyToMany
-	private Set<Recebedor> recebedor = new HashSet<>();
 
-	public Doador getDoador() {
-		return doador;
-	}
 
-	public void setDoador(Doador doador) {
-		this.doador = doador;
-	}
+	@ManyToMany(mappedBy = "comunidade", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"comunidade"})
+	private Optional<Recebedor> recebedor;
 
+
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -85,9 +84,30 @@ public class Comunidade {
 		this.bairro = bairro;
 	}
 
-	public void comunidade(Doador doador2) {
-		// TODO Auto-generated method stub
-		
+	public Doador getDoador() {
+		return doador;
 	}
+
+	public void setDoador(Doador doador) {
+		this.doador = doador;
+	}
+
+	public Publicacao getPublicacao() {
+		return publicacao;
+	}
+
+	public void setPublicacao(Publicacao publicacao) {
+		this.publicacao = publicacao;
+	}
+
+	public Optional<Recebedor> getRecebedor() {
+		return recebedor;
+	}
+
+	public void setRecebedor(Optional<Recebedor> optional) {
+		this.recebedor = optional;
+	}
+
+
 
 }
