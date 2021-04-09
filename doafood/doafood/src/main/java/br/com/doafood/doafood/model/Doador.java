@@ -1,7 +1,6 @@
 package br.com.doafood.doafood.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +37,15 @@ public class Doador {
 	private String bairro;
 	@NotNull
 	private Integer cnpj;
+	private String usuario;
 
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 	@OneToMany(mappedBy = "doador", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("doador")
 	private List<Comunidade> comunidade;
@@ -113,5 +120,6 @@ public class Doador {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

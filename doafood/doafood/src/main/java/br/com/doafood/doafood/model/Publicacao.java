@@ -39,6 +39,7 @@ public class Publicacao {
 	 @OneToMany(mappedBy = "publicacao", cascade = CascadeType.ALL)
 	 @JsonIgnoreProperties("publicacao")
 	 private List<Comunidade> comunidade;
-	 
-	
-}
+
+
+	}
+

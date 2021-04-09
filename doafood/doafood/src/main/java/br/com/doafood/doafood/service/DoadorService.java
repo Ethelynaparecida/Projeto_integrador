@@ -1,12 +1,15 @@
 package br.com.doafood.doafood.service;
 
+import java.nio.charset.Charset;
 import java.util.Optional;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import br.com.doafood.doafood.model.Comunidade;
 import br.com.doafood.doafood.model.Doador;
+import br.com.doafood.doafood.model.UsuarioLogin;
 import br.com.doafood.doafood.repository.ComunidadeRepository;
 import br.com.doafood.doafood.repository.DoadorRepository;
 
@@ -16,17 +19,17 @@ public class DoadorService {
 	@Autowired
 	private DoadorRepository repositoryDoador;
 	private ComunidadeRepository repositoryComunidade;
-
-	public Doador cadastrarDoador(Doador novoDoador) {
-		Optional<Doador> doadorExistente = repositoryDoador.findById(novoDoador.getId());
-
+	
+	public Optional<Doador> cadastrarDoador(Doador novoDoador) {
+		Optional<Doador> doadorExistente = repositoryDoador.findByEmail(novoDoador.getEmail());
 		if (doadorExistente.isPresent()) {
-			return null;
+			return Optional.empty();
 		}
-		return repositoryDoador.save(novoDoador);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String senhaCriptografada = encoder.encode(novoDoador.getSenha());
+		novoDoador.setSenha(senhaCriptografada);
+		return Optional.ofNullable(repositoryDoador.save(novoDoador));
 	}
-	
-	
 	//Apagarcomunidade
 	
 	public Optional<Doador> deletarComunidade(Long idDoador, Long idComunidade) {
@@ -41,20 +44,25 @@ public class DoadorService {
 		}
 		return null;
 	}
+	public Optional<UsuarioLogin> logar(Optional<UsuarioLogin> usuarioLogin){
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		Optional<Doador> usuarioPresente = repositoryDoador.findByEmail(usuarioLogin.get().getEmail());
 
-	public Optional<Doador> logarDoador(Optional<Doador> Doador) {
-		Doador doadorExistente = repositoryDoador.findByEmail(Doador.get().getEmail());
-
-		if (doadorExistente.isPresent()) {
-			Doador.get().getEmail();
-			Doador.get().getSenha();
+		if(usuarioPresente.isPresent()) {
+			if(encoder.matches(usuarioLogin.get().getSenha(), usuarioPresente.get().getSenha())) {
+				String auth = usuarioLogin.get().getEmail() + ":" + usuarioLogin.get().getSenha();
+				byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+				String authHeader = "Basic " + new String(encodedAuth);
+				
+				usuarioLogin.get().setToken(authHeader);				
+				usuarioLogin.get().setEmail(usuarioPresente.get().getEmail());
+				usuarioLogin.get().setSenha(usuarioPresente.get().getSenha());
 			
-			return Doador;
+				return usuarioLogin;
+			}
 		}
-		return null;
+				return null;
 	}
-
-	
 	//doador Criar Comunidade
 	
 	public Comunidade cadastrarComunidade (Comunidade novaComunidade, Long idDoador) {

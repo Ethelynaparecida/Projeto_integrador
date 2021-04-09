@@ -2,6 +2,8 @@ package br.com.doafood.doafood.model;
 
 
 
+import java.util.Optional;
+
 import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
