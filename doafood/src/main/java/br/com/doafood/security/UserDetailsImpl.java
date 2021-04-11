@@ -2,11 +2,9 @@ package br.com.doafood.security;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import br.com.doafood.model.Doador;
-import br.com.doafood.model.Recebedor;
+import br.com.doafood.model.Usuario;
 
 public class UserDetailsImpl implements UserDetails {
 	
@@ -19,7 +17,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	public UserDetailsImpl() {}
 	
-	public UserDetailsImpl(Doador usuario) {
+	public UserDetailsImpl(Usuario usuario) {
 		this.userName = usuario.getEmail();
 		this.password = usuario.getSenha();
 	}

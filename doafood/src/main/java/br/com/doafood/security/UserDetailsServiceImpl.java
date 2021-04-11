@@ -6,25 +6,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import br.com.doafood.model.Doador;
-import br.com.doafood.model.Recebedor;
-import br.com.doafood.repository.DoadorRepository;
-import br.com.doafood.repository.RecebedorRepository;
+
+import br.com.doafood.model.Usuario;
+import br.com.doafood.repository.UsuarioRepository;
 
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
-	private @Autowired DoadorRepository repositoryDoador;
-	private @Autowired RecebedorRepository repositoryRecebedor;
+	private @Autowired UsuarioRepository repositoryUsuario;
 
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-		Optional<Doador> doador = repositoryDoador.findByEmail(userName);
-		doador.orElseThrow(() -> new UsernameNotFoundException(userName + " not found."));
+		Optional<Usuario> usuario = repositoryUsuario.findByEmail(userName);
+		usuario.orElseThrow(() -> new UsernameNotFoundException(userName + " not found."));
 	
-		return doador.map(UserDetailsImpl::new).get();
+		return usuario.map(UserDetailsImpl::new).get();
 }
 		
 }

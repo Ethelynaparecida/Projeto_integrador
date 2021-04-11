@@ -41,21 +41,32 @@ public class Comunidade {
 
 	@ManyToOne
 	@JsonIgnoreProperties("comunidade")
-	private Doador doador;
-
-	@ManyToOne
-	@JsonIgnoreProperties("comunidade")
 	private Publicacao publicacao;
-
-
 
 	@ManyToMany(mappedBy = "comunidade", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"comunidade"})
-	private Optional<Recebedor> recebedor;
+	private Optional<Usuario> usuarioInscrito;
 
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"comunidadeCriada"})
+	private Usuario usuarioCriador;
 
-	
-	
+	public Optional<Usuario> getUsuarioInscrito() {
+		return usuarioInscrito;
+	}
+
+	public void setUsuarioInscrito(Optional<Usuario> usuarioInscrito) {
+		this.usuarioInscrito = usuarioInscrito;
+	}
+
+	public Usuario getUsuarioCriador() {
+		return usuarioCriador;
+	}
+
+	public void setUsuarioCriador(Usuario usuarioCriador) {
+		this.usuarioCriador = usuarioCriador;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -88,14 +99,6 @@ public class Comunidade {
 		this.bairro = bairro;
 	}
 
-	public Doador getDoador() {
-		return doador;
-	}
-
-	public void setDoador(Doador doador) {
-		this.doador = doador;
-	}
-
 	public Publicacao getPublicacao() {
 		return publicacao;
 	}
@@ -103,15 +106,6 @@ public class Comunidade {
 	public void setPublicacao(Publicacao publicacao) {
 		this.publicacao = publicacao;
 	}
-
-	public Optional<Recebedor> getRecebedor() {
-		return recebedor;
-	}
-
-	public void setRecebedor(Optional<Recebedor> optional) {
-		this.recebedor = optional;
-	}
-
-
+	
 
 }

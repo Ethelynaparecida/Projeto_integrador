@@ -4,6 +4,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.doafood.model.Comunidade;
+import br.com.doafood.model.Publicacao;
 import br.com.doafood.repository.ComunidadeRepository;
 import br.com.doafood.repository.PublicacaoRepository;
 
@@ -13,27 +14,15 @@ public class ComunidadeService {
 	public @Autowired ComunidadeRepository repositoryComunidade;
 	public @Autowired PublicacaoRepository repositoryPublicacao;
 	
-	/*public Comunidade criarPublicacao(Long idComunidade) {
+	public Publicacao criarPublicacao(Long idComunidade, Publicacao publicacao) {
 		Optional<Comunidade> comunidadeExistente = repositoryComunidade.findById(idComunidade);
-		
+		Publicacao novaPublicacao = repositoryPublicacao.save(publicacao);
 		if(comunidadeExistente.isPresent()) {
-			comunidadeExistente.get().add(comunidadeExistente.get());
-			return repositoryComunidade.save(comunidadeExistente.get());
+			novaPublicacao.setComunidade(comunidadeExistente.get());				
+			return repositoryPublicacao.save(novaPublicacao);
 		}
 		return null;
-		}
-	public Publicacao inserirPublicacao(Publicacao novaPublicacao, Long idComunidade) {
-		Optional<Comunidade> comunidadeExistente = repositoryComunidade.findById(idComunidade);
-		if(comunidadeExistente.isPresent()) {
-			novaPublicacao.get().;				
-			novaPublicacao.get().setNome(novaPublicacao.get().getNome());
-			novaPublicacao.get().setSenha(novaPublicacao.get().getSenha());
-			
-			repositoryPublicacao.save(novaPublicacao);
-			return repositoryPublicacao.findById(idComunidade).get();
-		}//Optional<Cliente> retorno = Optional.ofNullable(buscaCliente(cpf))
-		return null;
-	}*/
+	}
 	
 	public Optional<Comunidade> vizualizarComunidade(String comunidade){
 	Optional<Comunidade> vizualizarComunidade = repositoryComunidade.findByNomeContainingIgnoreCase(comunidade);

@@ -1,7 +1,5 @@
 package br.com.doafood.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,8 +36,54 @@ public class Publicacao {
 	 
 	 @OneToMany(mappedBy = "publicacao", cascade = CascadeType.ALL)
 	 @JsonIgnoreProperties("publicacao")
-	 private List<Comunidade> comunidade;
+	 private Comunidade comunidade;
 
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getInscricao() {
+		return inscricao;
+	}
+
+	public void setInscricao(String inscricao) {
+		this.inscricao = inscricao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Comunidade getComunidade() {
+		return comunidade;
+	}
+	public void setComunidade(Comunidade comunidade){
+		this.comunidade = comunidade;
+		
+	}
 	}
 
