@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -53,10 +53,10 @@ public class Usuario {
 	  name = "inscrito", 
 	  joinColumns = @JoinColumn(name = "comunidade_id"), 
 	  inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-	@JsonIgnoreProperties("usuario")
+	@JsonIgnoreProperties("usuarioInscrito")
 	private List<Comunidade> comunidade = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "usuarioCriador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Comunidade comunidadeCriada;
 
 	public Long getId() {

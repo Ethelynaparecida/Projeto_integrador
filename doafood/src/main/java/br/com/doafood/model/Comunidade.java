@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -47,7 +48,7 @@ public class Comunidade {
 	@JsonIgnoreProperties({"comunidade"})
 	private Optional<Usuario> usuarioInscrito;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "comunidadeCriada",fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"comunidadeCriada"})
 	private Usuario usuarioCriador;
 
