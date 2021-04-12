@@ -18,7 +18,7 @@ public class ComunidadeService {
 		Optional<Comunidade> comunidadeExistente = repositoryComunidade.findById(idComunidade);
 		Publicacao novaPublicacao = repositoryPublicacao.save(publicacao);
 		if(comunidadeExistente.isPresent()) {
-			novaPublicacao.setComunidade(comunidadeExistente.get());				
+			novaPublicacao.setPublicacao(comunidadeExistente.get());				
 			return repositoryPublicacao.save(novaPublicacao);
 		}
 		return null;

@@ -17,11 +17,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public Optional<Usuario> findByEmail(String email);
 
-	public Optional<Usuario> findByUsuario(String usuario);
+	
 
 	public Optional<Usuario> findById(Usuario idUsuario);
 
 	public Optional<Usuario> findByCnpj(String usuarioCnpj);
+
+	public Optional<Usuario> findById(Long id);
 	
 
 }

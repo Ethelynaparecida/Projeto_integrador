@@ -51,23 +51,41 @@ public class UsuarioService {
 		return null;
 	}
 
-	public Comunidade inscreverComunidade(Comunidade novaInscricao, Usuario usuario) {
+	/*public Comunidade inscreverComunidade(Comunidade novaInscricao, Usuario usuario) {
 
 		Comunidade comunidadeExistente = repositoryComunidade.findByNome(novaInscricao.getNome());
 
-		Optional<Usuario> recebedorExistente = repositoryUsuario.findById(usuario.getId());
+		Usuario recebedorExistente = repositoryUsuario.findAllById(usuario.getId()));
+				//findById(usuario.getId());
 
-		if (!recebedorExistente.isEmpty()) {
-			comunidadeExistente.setUsuarioInscrito(repositoryUsuario.findById(usuario.getId()));
+		if (!recebedorExistente.equals(null) .isEmpty()) {
+			comunidadeExistente.setUsuarioInscrito(repositoryUsuario.findById(usuario.getId())/*setUsuarioInscrito());
 
 			return repositoryComunidade.save(comunidadeExistente);
 		}
 		return null;
+	}*/
+	
+	public Optional<Comunidade> inscreverComunidade(Comunidade novaInscricao, Usuario usuario) {
+
+		Optional<Comunidade> comunidadeExistente = repositoryComunidade.findById(novaInscricao.getId());
+
+		Optional<Usuario> recebedorExistente = repositoryUsuario.findById(usuario.getId());
+		
+		comunidadeExistente.get().getInscritoPor().add(recebedorExistente.get());
+		return Optional.ofNullable(repositoryComunidade.save(comunidadeExistente.get()));
+		//if (!recebedorExistente.equals(null) .isEmpty()) {
+		//	
+
+		//	return repositoryComunidade.save(comunidadeExistente);
+	//	}
+		//return null;
 	}
+	
 
 	public Optional<Usuario> visualizarPerfil(String usuario) {
 
-		Optional<Usuario> usuarioExistente = repositoryUsuario.findByUsuario(usuario);
+		Optional<Usuario> usuarioExistente = repositoryUsuario.findByEmail(usuario);
 		if (usuarioExistente.isPresent()) {
 			return usuarioExistente;
 		} else {
@@ -78,7 +96,35 @@ public class UsuarioService {
 	
 	//Apagarcomunidade
 	
-		public Optional<Usuario> deletarComunidade(Long idComunidade, String UsuarioCnpj) {
+	public Optional<Usuario> deletarComunidade(Long idComunidade, String UsuarioCnpj) {
+		Optional<Usuario> doadorExistente = repositoryUsuario.findByCnpj(UsuarioCnpj);
+		Optional<Comunidade> comunidadeExistente = repositoryComunidade.findById(idComunidade);
+		
+		if(doadorExistente.isPresent()&&comunidadeExistente.isPresent()) {
+			comunidadeExistente.get().setUsuarioCriador(null);
+			repositoryComunidade.save(comunidadeExistente.get());
+			repositoryComunidade.deleteById(comunidadeExistente.get().getId());
+			return repositoryUsuario.findById(doadorExistente.get().getId());
+		}
+		return null;
+	}
+	
+	//doador Criar Comunidade
+	
+	public Comunidade cadastrarComunidade (Comunidade novaComunidade, Long UsuarioId) {
+		Comunidade comunidadeExistente = repositoryComunidade.save(novaComunidade);
+		
+		Optional<Usuario> doadorExistente = repositoryUsuario.findById(UsuarioId);
+		if(doadorExistente.isPresent()) {
+			comunidadeExistente.setUsuarioCriador(doadorExistente.get());
+			return repositoryComunidade.save(comunidadeExistente);
+		}
+		return null;
+	}
+	
+	//Apagarcomunidade
+	
+		/*public Optional<Usuario> deletarComunidade(Long idComunidade, String UsuarioCnpj) {
 			Optional<Usuario> doadorExistente = repositoryUsuario.findByCnpj(UsuarioCnpj);
 			Optional<Comunidade> comunidadeExistente = repositoryComunidade.findById(idComunidade);
 			
@@ -103,5 +149,5 @@ public class UsuarioService {
 			}
 			return null;
 		}
-		
+		*/
 }

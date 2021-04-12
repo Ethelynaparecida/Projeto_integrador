@@ -1,7 +1,7 @@
 package br.com.doafood.model;
 
-
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.CascadeType;
@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -40,25 +41,33 @@ public class Comunidade {
 	@Size(min = 6, max = 100)
 	private String bairro;
 
-	@ManyToOne
-	@JsonIgnoreProperties("comunidade")
-	private Publicacao publicacao;
+	@OneToMany(mappedBy = "publicacao", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("publicacao")
+	private List<Publicacao> publiComunidade = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "comunidade", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"comunidade"})
-	private Optional<Usuario> usuarioInscrito;
+	/*
+	 * @ManyToMany(mappedBy = "comunidade", cascade = CascadeType.ALL, fetch =
+	 * FetchType.EAGER)
+	 * 
+	 * @JsonIgnoreProperties("comunidade") private Usuario usuarioInscrito;
+	 */
 
-	@OneToMany(mappedBy = "comunidadeCriada",fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"comunidadeCriada"})
+	@ManyToMany(mappedBy = "minhascomunidades", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("minhascomunidades")
+	private List<Usuario> inscritoPor = new ArrayList<>();
+
+	// Mudei para Manytoone e coloquei um nome para a coluna
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "criador")
+	@JsonIgnoreProperties("comunidadeCriada")
 	private Usuario usuarioCriador;
 
-	public Optional<Usuario> getUsuarioInscrito() {
-		return usuarioInscrito;
-	}
-
-	public void setUsuarioInscrito(Optional<Usuario> usuarioInscrito) {
-		this.usuarioInscrito = usuarioInscrito;
-	}
+	/*
+	 * public Usuario getUsuarioInscrito() { return usuarioInscrito; }
+	 * 
+	 * public void setUsuarioInscrito(Usuario usuarioInscrito) {
+	 * this.usuarioInscrito = usuarioInscrito; }
+	 */
 
 	public Usuario getUsuarioCriador() {
 		return usuarioCriador;
@@ -100,13 +109,27 @@ public class Comunidade {
 		this.bairro = bairro;
 	}
 
-	public Publicacao getPublicacao() {
-		return publicacao;
+	public List<Publicacao> getPubliComunidade() {
+		return publiComunidade;
 	}
 
-	public void setPublicacao(Publicacao publicacao) {
-		this.publicacao = publicacao;
+	public void setPubliComunidade(List<Publicacao> publiComunidade) {
+		this.publiComunidade = publiComunidade;
 	}
+
+	public List<Usuario> getInscritoPor() {
+		return inscritoPor;
+	}
+
+	public void setInscritoPor(List<Usuario> inscritoPor) {
+		this.inscritoPor = inscritoPor;
+	}
+
+	public void setInscritoPor(Long id2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

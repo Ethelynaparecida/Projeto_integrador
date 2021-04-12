@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -43,21 +44,30 @@ public class Usuario {
 	private String bairro;
 	@NotNull
 	private Integer telefone;
-	@NotNull
+	
 	private String cnpj;
-	@NotNull
+
 	private String cpf;
-	
+
+	/*
+	 * @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	 * 
+	 * @JoinTable( name = "inscritos", joinColumns = @JoinColumn(name =
+	 * "usuario_id"), inverseJoinColumns = @JoinColumn(name = "comunidade_id"))
+	 * 
+	 * @JsonIgnoreProperties("usuarioInscrito") private List<Comunidade> comunidade
+	 * = new ArrayList<>();
+	 */
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(
-	  name = "inscrito", 
-	  joinColumns = @JoinColumn(name = "comunidade_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-	@JsonIgnoreProperties("usuarioInscrito")
-	private List<Comunidade> comunidade = new ArrayList<>();
-	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Comunidade comunidadeCriada;
+	@JoinTable(name = "inscritos",
+	joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "comunidade_id"))
+	@JsonIgnoreProperties("inscritoPor")
+	private List<Comunidade> minhascomunidades = new ArrayList<>();
+
+	@OneToMany(mappedBy = "usuarioCriador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("usuarioCriador")
+	private List<Comunidade> comunidadeCriada = new ArrayList<>();
 
 	public Long getId() {
 		return id;

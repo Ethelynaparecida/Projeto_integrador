@@ -34,6 +34,8 @@ public class UsuarioController {
 	public ResponseEntity<?> cadastrarUsuario(@Valid @RequestBody Usuario novoUsuario){
 		Optional<Usuario> dto = serviceUsuario.cadastrarUsuario(novoUsuario);
 		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
+		
+		
 	}
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLogin> auth(@RequestBody Optional<UsuarioLogin> usuarioLogin){
@@ -41,15 +43,22 @@ public class UsuarioController {
 				.map(usuario -> ResponseEntity.ok(usuario))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
-	/*@PostMapping("/inscrever")
-	public ResponseEntity<?> inscreverComunidade (@Valid @RequestBody Comunidade idComunidade, Usuario idUsuario){
-		Optional<Usuario> dto = serviceUsuario.inscreverComunidade(idComunidade, idUsuario);
-		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
-	}*/
 	
-	@PostMapping("/cadastrarComunidade/{cnpj}")
-	public ResponseEntity<?> cadastrarComunidade(@Valid @RequestBody Comunidade novaComunidade, String usuarioCnpj){
-		Comunidade cadastrarComunidade = serviceUsuario.cadastrarComunidade(novaComunidade,usuarioCnpj);
+	@PostMapping("/inscrever")
+	
+	/*public ResponseEntity<Object> inscreverComunidade (@Valid @RequestBody Comunidade idComunidade, Usuario idUsuario){
+		Optional<Comunidade> dto = serviceUsuario.inscreverComunidade(idComunidade, idUsuario);
+			
+		return ResponseEntity.status(HttpStatus.CREATED).body(dto.get());*/
+	
+	public ResponseEntity<?> inscreverComunidade (@Valid @RequestBody Comunidade idComunidade, Usuario idUsuario){
+		Optional<Comunidade> dto = serviceUsuario.inscreverComunidade(idComunidade, idUsuario);
+		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
+	}
+	
+	@PostMapping("/cadastrarComunidade")
+	public ResponseEntity<?> cadastrarComunidade(@Valid @RequestBody Comunidade novaComunidade , Long idUsuario){
+		Comunidade cadastrarComunidade = serviceUsuario.cadastrarComunidade(novaComunidade , idUsuario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(cadastrarComunidade);
 	}
 	

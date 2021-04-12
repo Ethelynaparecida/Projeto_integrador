@@ -27,7 +27,7 @@ public class ComunidadeController {
 	private ComunidadeRepository repository;
 	
 	@GetMapping
-	private ResponseEntity<List<Comunidade>> findAllCategoria(){
+	private ResponseEntity<List<Comunidade>> findAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
