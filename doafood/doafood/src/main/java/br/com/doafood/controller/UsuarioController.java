@@ -44,19 +44,15 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
-	@PostMapping("/inscrever")
 	
-	/*public ResponseEntity<Object> inscreverComunidade (@Valid @RequestBody Comunidade idComunidade, Usuario idUsuario){
-		Optional<Comunidade> dto = serviceUsuario.inscreverComunidade(idComunidade, idUsuario);
-			
-		return ResponseEntity.status(HttpStatus.CREATED).body(dto.get());*/
-	
-	public ResponseEntity<?> inscreverComunidade (@Valid @RequestBody Comunidade idComunidade, Usuario idUsuario){
-		Optional<Comunidade> dto = serviceUsuario.inscreverComunidade(idComunidade, idUsuario);
+	@PostMapping("/inscrever/{idUsuario}/{idComunidade}")
+		
+	public ResponseEntity<?> inscreverComunidade (@PathVariable (value = "idComunidade") Long idComunidade, @PathVariable (value = "idUsuario") Long idUsuario){
+		Optional<Usuario> dto = serviceUsuario.inscreverComunidade(idComunidade, idUsuario);
 		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
 	}
 	
-	@PostMapping("/cadastrarComunidade")
+	@PostMapping("/cadastrarComunidade/{}")
 	public ResponseEntity<?> cadastrarComunidade(@Valid @RequestBody Comunidade novaComunidade , Long idUsuario){
 		Comunidade cadastrarComunidade = serviceUsuario.cadastrarComunidade(novaComunidade , idUsuario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(cadastrarComunidade);
