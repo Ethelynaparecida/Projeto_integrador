@@ -1,15 +1,10 @@
 package br.com.doafood.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -37,8 +32,10 @@ public class Publicacao {
 	private String descricao;
 
 	@ManyToOne
-	@JsonIgnoreProperties("publiComunidade")
-	private Comunidade publicacao;
+	@JsonIgnoreProperties("publicacao")
+	private Comunidade publiComunidade;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -80,12 +77,13 @@ public class Publicacao {
 		this.descricao = descricao;
 	}
 
-	public Comunidade getPublicacao() {
-		return publicacao;
+	public Comunidade getPubliComunidade() {
+		return publiComunidade;
 	}
 
-	public void setPublicacao(Comunidade publicacao) {
-		this.publicacao = publicacao;
+	public void setPubliComunidade(Comunidade publiComunidade) {
+		this.publiComunidade = publiComunidade;
 	}
+
 
 }

@@ -45,19 +45,27 @@ public class UsuarioController {
 	}
 	
 	
-	@PostMapping("/inscrever/{idUsuario}/{idComunidade}")
-		
-	public ResponseEntity<?> inscreverComunidade (@PathVariable (value = "idComunidade") Long idComunidade, @PathVariable (value = "idUsuario") Long idUsuario){
+	@PostMapping("/inscrever/{id_Usuario}/{id_Comunidade}")	
+	public ResponseEntity<?> inscreverComunidade (
+			@PathVariable (value = "id_Usuario") Long idUsuario,
+			@PathVariable (value = "id_Comunidade") Long idComunidade){
 		Optional<Usuario> dto = serviceUsuario.inscreverComunidade(idComunidade, idUsuario);
 		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
 	}
 	
-	@PostMapping("/cadastrarComunidade/{idUsuario}")
+	@PostMapping("/sairComunidade/{idUsuario}/{idComunidade}")
+	public ResponseEntity<?> sairDaComunidade (@PathVariable (value = "idComunidade") Long idComunidade, 
+			@PathVariable (value = "idUsuario") Long idUsuario){
+		Optional<Usuario> dto = serviceUsuario.sairDaComunidade(idComunidade, idUsuario);
+		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
+	}
+	
+	@PostMapping("/cadastrarComunidade/{id_Usuario}")
 	public ResponseEntity<?> cadastrarComunidade(
-			@PathVariable (value = "idUsuario") Long idUsuario,
+			@PathVariable (value = "id_Usuario") Long idUsuario,
 			@Valid @RequestBody Comunidade novaComunidade){
-		Comunidade cadastrarComunidade = serviceUsuario.cadastrarComunidade(novaComunidade , idUsuario);
-		return ResponseEntity.status(HttpStatus.CREATED).body(cadastrarComunidade);
+		Optional<Comunidade> dto = serviceUsuario.cadastrarComunidade(novaComunidade , idUsuario);
+		return !dto.isEmpty() ?  ResponseEntity.ok(dto.get()) : ResponseEntity.notFound().build();
 	}
 	
 	@GetMapping

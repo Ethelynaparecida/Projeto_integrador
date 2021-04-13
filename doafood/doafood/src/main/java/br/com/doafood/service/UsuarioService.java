@@ -72,14 +72,28 @@ public class UsuarioService {
 
 		Optional<Comunidade> comunidade = repositoryComunidade.findById(idComunidade);
 
-		Optional<Usuario> recebedor = repositoryUsuario.findById(idComunidade);
+		Optional<Usuario> usuario = repositoryUsuario.findById(idUsuario);
 
-		if (comunidade.isPresent() && recebedor.isPresent()) {
+		if (comunidade.isPresent() && usuario.isPresent()) {
 
-			recebedor.get().getMinhascomunidades().add(comunidade.get());
+			usuario.get().getMinhasInscricoes().add(comunidade.get());
 
-			return Optional.ofNullable(repositoryUsuario.save(recebedor.get()));
+			return Optional.ofNullable(repositoryUsuario.save(usuario.get()));
 
+		} else {
+			return Optional.empty();
+		}
+
+	}
+
+	public Optional<Usuario> sairDaComunidade(Long idComunidade, Long idUsuario) {
+		Optional<Comunidade> comunidade = repositoryComunidade.findById(idComunidade);
+		Optional<Usuario> usuario = repositoryUsuario.findById(idUsuario);
+
+		if (comunidade.isPresent() && usuario.isPresent()) {
+
+			usuario.get().getMinhasInscricoes().remove(comunidade.get());
+			return Optional.ofNullable(repositoryUsuario.save(usuario.get()));
 		} else {
 			return Optional.empty();
 		}
@@ -114,15 +128,14 @@ public class UsuarioService {
 
 	// doador Criar Comunidade
 
-	public Comunidade cadastrarComunidade(Comunidade novaComunidade, Long UsuarioId) {
-		Comunidade comunidadeExistente = repositoryComunidade.save(novaComunidade);
-
-		Optional<Usuario> doadorExistente = repositoryUsuario.findById(UsuarioId);
-		if (doadorExistente.isPresent()) {
-			comunidadeExistente.setUsuarioCriador(doadorExistente.get());
-			return repositoryComunidade.save(comunidadeExistente);
+	public Optional<Comunidade> cadastrarComunidade(Comunidade novaComunidade, Long UsuarioId) {
+		
+		Optional<Usuario> usuarioExistente = repositoryUsuario.findById(UsuarioId);
+		if (usuarioExistente.isPresent()) {
+			novaComunidade.setUsuarioCriador(usuarioExistente.get());
+			return Optional.ofNullable(repositoryComunidade.save(novaComunidade));
 		}
-		return null;
+		return Optional.empty();
 	}
 
 	// Apagarcomunidade

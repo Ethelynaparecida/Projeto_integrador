@@ -1,7 +1,7 @@
 package br.com.doafood.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -49,25 +48,17 @@ public class Usuario {
 
 	private String cpf;
 
-	/*
-	 * @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	 * 
-	 * @JoinTable( name = "inscritos", joinColumns = @JoinColumn(name =
-	 * "usuario_id"), inverseJoinColumns = @JoinColumn(name = "comunidade_id"))
-	 * 
-	 * @JsonIgnoreProperties("usuarioInscrito") private List<Comunidade> comunidade
-	 * = new ArrayList<>();
-	 */
-
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "inscritos",
-	joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "comunidade_id"))
-	@JsonIgnoreProperties("inscritoPor")
-	private List<Comunidade> minhascomunidades = new ArrayList<>();
+	@JoinTable(
+			name = "inscritos",
+			joinColumns = @JoinColumn(name = "usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "comunidade_id"))
+	@JsonIgnoreProperties({"meusInscritos", "usuarioCriador"})
+	private Set<Comunidade> minhasInscricoes = new HashSet<>();
 
 	@OneToMany(mappedBy = "usuarioCriador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties("usuarioCriador")
-	private List<Comunidade> comunidadeCriada = new ArrayList<>();
+	@JsonIgnoreProperties({"usuarioCriador"})
+	private Set<Comunidade> minhasComunidades = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -141,22 +132,19 @@ public class Usuario {
 		this.cpf = cpf;
 	}
 
-	public List<Comunidade> getMinhascomunidades() {
-		return minhascomunidades;
+	public Set<Comunidade> getMinhasInscricoes() {
+		return minhasInscricoes;
 	}
 
-	public void setMinhascomunidades(List<Comunidade> minhascomunidades) {
-		this.minhascomunidades = minhascomunidades;
+	public void setMinhasInscricoes(Set<Comunidade> minhasInscricoes) {
+		this.minhasInscricoes = minhasInscricoes;
 	}
 
-	public List<Comunidade> getComunidadeCriada() {
-		return comunidadeCriada;
+	public Set<Comunidade> getMinhasComunidades() {
+		return minhasComunidades;
 	}
 
-	public void setComunidadeCriada(List<Comunidade> comunidadeCriada) {
-		this.comunidadeCriada = comunidadeCriada;
+	public void setMinhasComunidades(Set<Comunidade> minhasComunidades) {
+		this.minhasComunidades = minhasComunidades;
 	}
-	
-	
-
 }

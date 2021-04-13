@@ -2,6 +2,7 @@ package br.com.doafood.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.doafood.model.Comunidade;
+import br.com.doafood.model.Publicacao;
 import br.com.doafood.repository.ComunidadeRepository;
+import br.com.doafood.service.ComunidadeService;
 
 
 @RestController
@@ -25,6 +28,7 @@ import br.com.doafood.repository.ComunidadeRepository;
 public class ComunidadeController {
 	@Autowired
 	private ComunidadeRepository repository;
+	private @Autowired ComunidadeService serviceComunidade;
 	
 	@GetMapping
 	private ResponseEntity<List<Comunidade>> findAll(){
@@ -42,12 +46,13 @@ public class ComunidadeController {
 		return ResponseEntity.ok(repository.findByDescricaoContainingIgnoreCase(descricao));
 	}
 	
-	@PostMapping
-	public ResponseEntity <Comunidade> postCategoria (@RequestBody Comunidade categoria){
-		return ResponseEntity.status(HttpStatus.CREATED).
-				body(repository.save(categoria));
+	@PostMapping("/inserirPublicacao/{idComunidade}")
+	public ResponseEntity <Publicacao> postCategoria (@RequestBody Publicacao novaPublicacao,
+			@PathVariable (value = "idComunidade") Long idComunidade){
+		Optional<Publicacao> postCategoria = serviceComunidade.criarPublicacao(idComunidade, novaPublicacao);
+		return !postCategoria.isEmpty() ? ResponseEntity.ok(postCategoria.get()) : ResponseEntity.notFound().build();
 	}
-	
+		
 	@PutMapping
 	public ResponseEntity <Comunidade> putCategoria (@RequestBody Comunidade categoria){
 		return ResponseEntity.ok(repository.save(categoria));

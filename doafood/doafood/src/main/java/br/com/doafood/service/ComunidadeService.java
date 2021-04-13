@@ -14,14 +14,13 @@ public class ComunidadeService {
 	public @Autowired ComunidadeRepository repositoryComunidade;
 	public @Autowired PublicacaoRepository repositoryPublicacao;
 	
-	public Publicacao criarPublicacao(Long idComunidade, Publicacao publicacao) {
+	public Optional<Publicacao> criarPublicacao(Long idComunidade, Publicacao publicacao) {
 		Optional<Comunidade> comunidadeExistente = repositoryComunidade.findById(idComunidade);
-		Publicacao novaPublicacao = repositoryPublicacao.save(publicacao);
 		if(comunidadeExistente.isPresent()) {
-			novaPublicacao.setPublicacao(comunidadeExistente.get());				
-			return repositoryPublicacao.save(novaPublicacao);
+			publicacao.setPubliComunidade(comunidadeExistente.get());		
+			return Optional.ofNullable(repositoryPublicacao.save(publicacao));
 		}
-		return null;
+		return Optional.empty();
 	}
 	
 	public Optional<Comunidade> vizualizarComunidade(String comunidade){
