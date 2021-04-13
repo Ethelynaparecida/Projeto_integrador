@@ -141,4 +141,22 @@ public class Usuario {
 		this.cpf = cpf;
 	}
 
+	public List<Comunidade> getMinhascomunidades() {
+		return minhascomunidades;
+	}
+
+	public void setMinhascomunidades(List<Comunidade> minhascomunidades) {
+		this.minhascomunidades = minhascomunidades;
+	}
+
+	public List<Comunidade> getComunidadeCriada() {
+		return comunidadeCriada;
+	}
+
+	public void setComunidadeCriada(List<Comunidade> comunidadeCriada) {
+		this.comunidadeCriada = comunidadeCriada;
+	}
+	
+	
+
 }

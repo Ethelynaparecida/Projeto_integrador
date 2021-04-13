@@ -52,8 +52,10 @@ public class UsuarioController {
 		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
 	}
 	
-	@PostMapping("/cadastrarComunidade/{}")
-	public ResponseEntity<?> cadastrarComunidade(@Valid @RequestBody Comunidade novaComunidade , Long idUsuario){
+	@PostMapping("/cadastrarComunidade/{idUsuario}")
+	public ResponseEntity<?> cadastrarComunidade(
+			@PathVariable (value = "idUsuario") Long idUsuario,
+			@Valid @RequestBody Comunidade novaComunidade){
 		Comunidade cadastrarComunidade = serviceUsuario.cadastrarComunidade(novaComunidade , idUsuario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(cadastrarComunidade);
 	}
