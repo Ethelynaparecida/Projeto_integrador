@@ -42,7 +42,7 @@ public class Comunidade {
 	private String bairro;
 
 	@OneToMany(mappedBy = "publiComunidade", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("publiComunidade")
+	@JsonIgnoreProperties({"publiComunidade","meusInscritos","minhasComunidades"})
 	private List<Publicacao> publicacao = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "minhasInscricoes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -52,7 +52,7 @@ public class Comunidade {
 	// Mudei para Manytoone e coloquei um nome para a coluna
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "criador")
-	@JsonIgnoreProperties({"minhasInscricoes"})
+	@JsonIgnoreProperties({"minhasInscricoes","minhasComunidades"})
 	private Usuario usuarioCriador;
 
 	public Long getId() {

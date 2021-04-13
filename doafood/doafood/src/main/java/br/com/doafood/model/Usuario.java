@@ -57,7 +57,7 @@ public class Usuario {
 	private Set<Comunidade> minhasInscricoes = new HashSet<>();
 
 	@OneToMany(mappedBy = "usuarioCriador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"usuarioCriador"})
+	@JsonIgnoreProperties({"usuarioCriador","meusInscritos"})
 	private Set<Comunidade> minhasComunidades = new HashSet<>();
 
 	public Long getId() {

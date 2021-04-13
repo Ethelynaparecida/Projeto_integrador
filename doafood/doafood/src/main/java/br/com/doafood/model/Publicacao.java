@@ -32,7 +32,7 @@ public class Publicacao {
 	private String descricao;
 
 	@ManyToOne
-	@JsonIgnoreProperties("publicacao")
+	@JsonIgnoreProperties({"publicacao","meusInscritos","minhasComunidades"})
 	private Comunidade publiComunidade;
 	
 	
