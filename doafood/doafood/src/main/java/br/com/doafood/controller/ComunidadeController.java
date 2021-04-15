@@ -20,6 +20,7 @@ import br.com.doafood.model.Comunidade;
 import br.com.doafood.model.Publicacao;
 import br.com.doafood.repository.ComunidadeRepository;
 import br.com.doafood.service.ComunidadeService;
+import io.swagger.annotations.ApiOperation;
 
 
 @RestController
@@ -30,36 +31,42 @@ public class ComunidadeController {
 	private ComunidadeRepository repository;
 	private @Autowired ComunidadeService serviceComunidade;
 	
+	@ApiOperation(value="Retorna lista de comunidades")
 	@GetMapping
 	private ResponseEntity<List<Comunidade>> findAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	private ResponseEntity<Comunidade> findByIDCategoria(@PathVariable long id){
+	@ApiOperation(value="Busca e retorna a comunidade pela listo id")
+	private ResponseEntity<Comunidade> findById(@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).
 				orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/descricao/{descricao}")
-	private ResponseEntity<List<Comunidade>> findByDescricaoCategoria(@PathVariable String descricao){
+	@ApiOperation(value="Busca e retorna a comunidade pela descrição")
+	private ResponseEntity<List<Comunidade>> findByDescricao(@PathVariable String descricao){
 		return ResponseEntity.ok(repository.findByDescricaoContainingIgnoreCase(descricao));
 	}
 	
 	@PostMapping("/inserirPublicacao/{idComunidade}")
-	public ResponseEntity <Publicacao> postCategoria (@RequestBody Publicacao novaPublicacao,
+	@ApiOperation(value="Insere dados e retorna a publicação")
+	public ResponseEntity <Publicacao> postPublicacao (@RequestBody Publicacao novaPublicacao,
 			@PathVariable (value = "idComunidade") Long idComunidade){
-		Optional<Publicacao> postCategoria = serviceComunidade.criarPublicacao(idComunidade, novaPublicacao);
-		return !postCategoria.isEmpty() ? ResponseEntity.ok(postCategoria.get()) : ResponseEntity.notFound().build();
+		Optional<Publicacao> postPublicacao = serviceComunidade.criarPublicacao(idComunidade, novaPublicacao);
+		return !postPublicacao.isEmpty() ? ResponseEntity.ok(postPublicacao.get()) : ResponseEntity.notFound().build();
 	}
 		
 	@PutMapping
-	public ResponseEntity <Comunidade> putCategoria (@RequestBody Comunidade categoria){
-		return ResponseEntity.ok(repository.save(categoria));
+	@ApiOperation(value="Modifica os dados da comunidade")
+	public ResponseEntity <Comunidade> putComunidade (@RequestBody Comunidade comunidade){
+		return ResponseEntity.ok(repository.save(comunidade));
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteCategoria(@PathVariable long id){
+	@ApiOperation(value="Deleta comunidade pelo id")
+	public void deleteComunidade(@PathVariable long id){
 		repository.deleteById(id);
 	}
 }

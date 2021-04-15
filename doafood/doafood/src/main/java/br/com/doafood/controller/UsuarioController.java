@@ -20,6 +20,7 @@ import br.com.doafood.model.Usuario;
 import br.com.doafood.model.UsuarioLogin;
 import br.com.doafood.repository.UsuarioRepository;
 import br.com.doafood.service.UsuarioService;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -29,7 +30,7 @@ public class UsuarioController {
 	private @Autowired UsuarioRepository repositoryUsuario;
 	private @Autowired UsuarioService serviceUsuario;
 
-	
+	@ApiOperation(value="Retorna um usuario cadastrado")
 	@PostMapping("/cadastrar")
 	public ResponseEntity<?> cadastrarUsuario(@Valid @RequestBody Usuario novoUsuario){
 		Optional<Usuario> dto = serviceUsuario.cadastrarUsuario(novoUsuario);
@@ -38,14 +39,17 @@ public class UsuarioController {
 		
 	}
 	@PostMapping("/logar")
+	@ApiOperation(value="Retorna conta do usuario")
 	public ResponseEntity<UsuarioLogin> auth(@RequestBody Optional<UsuarioLogin> usuarioLogin){
 		return serviceUsuario.logar(usuarioLogin)
 				.map(usuario -> ResponseEntity.ok(usuario))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+		
 	}
 	
 	
 	@PostMapping("/inscrever/{id_Usuario}/{id_Comunidade}")	
+	@ApiOperation(value="Retorna usuario inscrito")
 	public ResponseEntity<?> inscreverComunidade (
 			@PathVariable (value = "id_Usuario") Long idUsuario,
 			@PathVariable (value = "id_Comunidade") Long idComunidade){
@@ -54,6 +58,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/sairComunidade/{idUsuario}/{idComunidade}")
+	@ApiOperation(value="Retorna saida do usuario da comunidade")
 	public ResponseEntity<?> sairDaComunidade (@PathVariable (value = "idComunidade") Long idComunidade, 
 			@PathVariable (value = "idUsuario") Long idUsuario){
 		Optional<Usuario> dto = serviceUsuario.sairDaComunidade(idComunidade, idUsuario);
@@ -61,6 +66,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/cadastrarComunidade/{id_Usuario}")
+	@ApiOperation(value="Retorna uma cominudade cadastrada")
 	public ResponseEntity<?> cadastrarComunidade(
 			@PathVariable (value = "id_Usuario") Long idUsuario,
 			@Valid @RequestBody Comunidade novaComunidade){
@@ -69,33 +75,38 @@ public class UsuarioController {
 	}
 	
 	@GetMapping
+	@ApiOperation(value="Busca e retorna lista de usuarios")
 	private ResponseEntity<List<Usuario>> findAll(){
 		return ResponseEntity.ok(repositoryUsuario.findAll());
 	}
 	
 	@GetMapping("/{id}")
+	@ApiOperation(value="Busca e retorna o usuario pelo id")
 	private ResponseEntity<Usuario> findById(@PathVariable long id){
 		return repositoryUsuario.findById(id).map(resp -> ResponseEntity.ok(resp)).
 				orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/nome/{nome}")
-
+	@ApiOperation(value="Busca e retorna o usuario pelo nome")
 	private ResponseEntity<List<Usuario>> findByNome(@PathVariable String nome){
 		return ResponseEntity.ok(repositoryUsuario.findAllByNomeContainingIgnoreCase(nome));
 	}
 	
 	@PutMapping("/alterar")
+	@ApiOperation(value="Busca e altera os dados do usuario pela lista de usuario")
 	public ResponseEntity <Usuario> put (@RequestBody Usuario usuario){
 		return ResponseEntity.ok(repositoryUsuario.save(usuario));
 	}
 	
 	@DeleteMapping("/{id}")
+	@ApiOperation(value="Busca e deleta o usuario pelo id")
 	public void delete (@PathVariable long id){
 		repositoryUsuario.deleteById(id);
 	}
 	
 	@DeleteMapping("/comunidade/delete/{id_comunidade}/{cnpj}")
+	@ApiOperation(value="Busca e deleta a comunidade pelo id_comunidade/cnpj do usuario")
     public ResponseEntity<?> deletarComunidade(
             @PathVariable(value = "cnpj") String usuarioCnpj,
             @PathVariable(value = "id_comunidade") Long idComunidade){
