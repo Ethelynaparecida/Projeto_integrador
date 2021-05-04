@@ -1,5 +1,11 @@
 package br.com.doafood.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,15 +33,16 @@ public class Publicacao {
 	private String categoria;
 
 	// recebedors cadastrados para doação
-	private String inscricao;
+	@ElementCollection
+	private List<Usuario> inscricao = new ArrayList<Usuario>();
+	
+	
 
 	private String descricao;
 
 	@ManyToOne
 	@JsonIgnoreProperties({"publicacao","meusInscritos","minhasComunidades"})
 	private Comunidade publiComunidade;
-	
-	
 
 	public Long getId() {
 		return id;
@@ -61,11 +68,14 @@ public class Publicacao {
 		this.categoria = categoria;
 	}
 
-	public String getInscricao() {
+	
+	
+
+	public List<Usuario> getInscricao() {
 		return inscricao;
 	}
 
-	public void setInscricao(String inscricao) {
+	public void setInscricao(List<Usuario> inscricao) {
 		this.inscricao = inscricao;
 	}
 
@@ -84,6 +94,8 @@ public class Publicacao {
 	public void setPubliComunidade(Comunidade publiComunidade) {
 		this.publiComunidade = publiComunidade;
 	}
-
+	
+	
+		
 
 }

@@ -42,11 +42,9 @@ public class Usuario {
 	@Size(min = 6)
 	private String bairro;
 	@NotNull
-	private Integer telefone;
+	private String telefone;
 	
-	private String cnpj;
-
-	private String cpf;
+	private String tipo;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
@@ -108,28 +106,23 @@ public class Usuario {
 		this.bairro = bairro;
 	}
 
-	public Integer getTelefone() {
+	
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
-	public String getCnpj() {
-		return cnpj;
+	
+
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public Set<Comunidade> getMinhasInscricoes() {
@@ -147,4 +140,6 @@ public class Usuario {
 	public void setMinhasComunidades(Set<Comunidade> minhasComunidades) {
 		this.minhasComunidades = minhasComunidades;
 	}
+
+	
 }

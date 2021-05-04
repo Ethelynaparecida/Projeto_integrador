@@ -46,8 +46,8 @@ public class ComunidadeController {
 	
 	@GetMapping("/descricao/{descricao}")
 	@ApiOperation(value="Busca e retorna a comunidade pela descrição")
-	private ResponseEntity<List<Comunidade>> findByDescricao(@PathVariable String descricao){
-		return ResponseEntity.ok(repository.findByDescricaoContainingIgnoreCase(descricao));
+	private ResponseEntity<List<Comunidade>> findByDescricao(@PathVariable String sobre){
+		return ResponseEntity.ok(repository.findBySobreContainingIgnoreCase(sobre));
 	}
 	
 	@PostMapping("/inserirPublicacao/{idComunidade}")

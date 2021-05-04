@@ -8,9 +8,9 @@ import br.com.doafood.model.Comunidade;
 
 @Repository
 public interface ComunidadeRepository extends JpaRepository<Comunidade, Long> {
-	public Optional<Comunidade> findByNomeContainingIgnoreCase(String Nome);
+	public Optional<Comunidade> findByNomeContainingIgnoreCase(String nome);
 
-	public List<Comunidade> findByDescricaoContainingIgnoreCase(String descricao);
+	public List<Comunidade> findBySobreContainingIgnoreCase(String sobre);
 
 	public Comunidade findByNome(String nome);
 

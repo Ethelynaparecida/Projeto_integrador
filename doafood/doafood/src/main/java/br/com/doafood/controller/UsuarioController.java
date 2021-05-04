@@ -30,7 +30,7 @@ public class UsuarioController {
 	private @Autowired UsuarioRepository repositoryUsuario;
 	private @Autowired UsuarioService serviceUsuario;
 
-	@ApiOperation(value="Retorna um usuario cadastrado")
+	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<?> cadastrarUsuario(@Valid @RequestBody Usuario novoUsuario){
 		Optional<Usuario> dto = serviceUsuario.cadastrarUsuario(novoUsuario);

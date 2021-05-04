@@ -44,6 +44,12 @@ public class UsuarioService {
 				usuarioLogin.get().setToken(authHeader);
 				usuarioLogin.get().setEmail(usuarioPresente.get().getEmail());
 				usuarioLogin.get().setSenha(usuarioPresente.get().getSenha());
+				usuarioLogin.get().setBairro(usuarioPresente.get().getBairro());
+				usuarioLogin.get().setCidade(usuarioPresente.get().getCidade());
+				usuarioLogin.get().setTelefone(usuarioPresente.get().getTelefone());
+				usuarioLogin.get().setTipo(usuarioPresente.get().getTipo());
+				
+				
 
 				return usuarioLogin;
 			}
@@ -113,8 +119,8 @@ public class UsuarioService {
 
 	// Apagarcomunidade
 
-	public Optional<Usuario> deletarComunidade(Long idComunidade, String UsuarioCnpj) {
-		Optional<Usuario> doadorExistente = repositoryUsuario.findByCnpj(UsuarioCnpj);
+	public Optional<Usuario> deletarComunidade(Long idComunidade, String email) {
+		Optional<Usuario> doadorExistente = repositoryUsuario.findByEmail(email);
 		Optional<Comunidade> comunidadeExistente = repositoryComunidade.findById(idComunidade);
 
 		if (doadorExistente.isPresent() && comunidadeExistente.isPresent()) {

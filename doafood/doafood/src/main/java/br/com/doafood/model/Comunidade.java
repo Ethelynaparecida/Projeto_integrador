@@ -35,7 +35,7 @@ public class Comunidade {
 
 	@NotNull
 	@Size(min = 10, max = 250)
-	private String descricao;
+	private String sobre;
 
 	@NotNull
 	@Size(min = 6, max = 100)
@@ -43,7 +43,7 @@ public class Comunidade {
 
 	@OneToMany(mappedBy = "publiComunidade", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"publiComunidade","meusInscritos","minhasComunidades"})
-	private List<Publicacao> publicacao = new ArrayList<>();
+	private Set<Publicacao> publicacao = new HashSet<>();
 
 	@ManyToMany(mappedBy = "minhasInscricoes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"publiComunidade", "minhasInscricoes"})
@@ -71,12 +71,13 @@ public class Comunidade {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+
+	public String getSobre() {
+		return sobre;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setSobre(String sobre) {
+		this.sobre = sobre;
 	}
 
 	public String getBairro() {
@@ -87,11 +88,13 @@ public class Comunidade {
 		this.bairro = bairro;
 	}
 
-	public List<Publicacao> getPublicacao() {
+	
+
+	public Set<Publicacao> getPublicacao() {
 		return publicacao;
 	}
 
-	public void setPublicacao(List<Publicacao> publicacao) {
+	public void setPublicacao(Set<Publicacao> publicacao) {
 		this.publicacao = publicacao;
 	}
 
