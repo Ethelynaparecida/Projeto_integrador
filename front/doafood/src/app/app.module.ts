@@ -17,6 +17,9 @@ import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.compon
 import { PostagemDeletComponent } from './edit/postagem-delet/postagem-delet.component';
 
 import { ComunidadeEditComponent } from './edit/comunidade-edit/comunidade-edit.component';
+import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
+import { UsuarioEditComponent } from './edit/usuario-edit/usuario-edit.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -34,7 +37,10 @@ import { ComunidadeEditComponent } from './edit/comunidade-edit/comunidade-edit.
     PostagemDeletComponent,
     ComunidadeDeleteComponent,
     ComunidadeEditComponent,
-    ComunidadeComponent
+    ComunidadeComponent,
+    SobreNosComponent,
+    UsuarioEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

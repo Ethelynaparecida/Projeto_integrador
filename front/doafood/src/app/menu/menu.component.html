@@ -1,60 +1,73 @@
-<nav class="navbar navbar-expand-lg navbar-light " id="bg">
+<nav *ngIf="!tipoMenu()" class="navbar navbar-expand-lg navbar-light " id="bg">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
         aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <img src="https://i.imgur.com/GlEacpd.png?" class="imgLogo ml-5 mr-5" alt="">
-
     <div class="collapse navbar-collapse " id="conteudoNavbarSuportado">
-
         <ul class="navbar-nav mr-auto align-items-center">
             <li class="nav-item ">
-                <a class="nav-link mr-5" routerLink="/inicio">
-                    <p class="font-weight-bold text-white">Home</p> <span class="sr-only"></span>
+                <a class="nav-link mr-5" routerLink="/home">
+                    <p class="font-weight-bold text-white" *ngIf="!tipoMenu()"> Home</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link mr-5" routerLink="/sobreNos">
+                <a class="nav-link mr-5" routerLink="/sobre-nos">
                     <p class="font-weight-bold text-white">Sobre nós</p>
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link " href="#">
-                    <p class="font-weight-bold text-white">Contato</p>
+            
+        </ul>
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+            <li class="nav-item pl-5">
+                <a href="" routerLink="/entrar">
+                    <p class="m-0 font-weight-bold text-white fs-16 mr-5" *ngIf="!tipoMenu()">Login
+                        <i class="fas fa-sign-in-alt"></i>
+                    </p>
                 </a>
             </li>
+        </ul>
+        
+    </div>
+</nav>
+
+
+<nav *ngIf="tipoMenu()" class="navbar navbar-expand-lg navbar-light " id="bg">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+        aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <img src="https://i.imgur.com/GlEacpd.png?" class="imgLogo ml-5 mr-5" alt="">
+    <div class="collapse navbar-collapse " id="conteudoNavbarSuportado">
+        <ul class="navbar-nav mr-auto align-items-center">
+            <li class="nav-item ">
+                
+                <a class="nav-link mr-5" [routerLink]="[ '/inicio'  ]">
+                    <p class="font-weight-bold text-white" *ngIf="tipoMenu()"> Inicio</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-5" routerLink="/sobre-nos">
+                    <p class="font-weight-bold text-white">Sobre nós</p>
+                </a>
+            </li>
+            
             <li class="nav-item pl-3">
-                <a>
+                <a [routerLink]="['user-edit', id]">
                     <p class="text-white fs-16 m-0">
                         <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
                     </p>
                 </a>
             </li>
         </ul>
-
+        
         <ul class="navbar-nav ml-auto d-flex align-items-center">
             <li class="nav-item pl-5">
                 <a href="">
-                    <p class="m-0 font-weight-bold text-white fs-16 mr-5" *ngIf="!tipoMenu()" routerLink="/entrar">Login
-                        <i class="fas fa-sign-in-alt"></i></p>
-                </a>
-
-            </li>
-            
-
-        </ul>
-        <ul class="navbar-nav ml-auto d-flex align-items-center">
-            <li class="nav-item pl-5">
-                <a href="">
-                    <p class="m-0 font-weight-bold text-white fs-16 mr-5" *ngIf="tipoMenu()" routerLink="/entrar">Sair<i
+                    <p class="m-0 font-weight-bold text-white fs-16 mr-5" *ngIf="tipoMenu()" routerLink="/home">Sair<i
                             class="fas fa-sign-in-alt"></i></p>
                 </a>
-
             </li>
-
         </ul>
-
     </div>
 </nav>
