@@ -36,7 +36,9 @@ public class Publicacao {
 	@ElementCollection
 	private List<Usuario> inscricao = new ArrayList<Usuario>();
 	
-	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 
 	private String descricao;
 
@@ -93,6 +95,14 @@ public class Publicacao {
 
 	public void setPubliComunidade(Comunidade publiComunidade) {
 		this.publiComunidade = publiComunidade;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

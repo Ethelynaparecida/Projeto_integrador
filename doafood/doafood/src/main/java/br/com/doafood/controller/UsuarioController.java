@@ -65,27 +65,28 @@ public class UsuarioController {
 		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
 	}
 	
-	@PostMapping("/cadastrarComunidade/{id_Usuario}")
+	/*@PostMapping("/cadastrarComunidade/{id_Usuario}")
 	@ApiOperation(value="Retorna uma cominudade cadastrada")
 	public ResponseEntity<?> cadastrarComunidade(
 			@PathVariable (value = "id_Usuario") Long idUsuario,
 			@Valid @RequestBody Comunidade novaComunidade){
 		Optional<Comunidade> dto = serviceUsuario.cadastrarComunidade(novaComunidade , idUsuario);
 		return !dto.isEmpty() ?  ResponseEntity.ok(dto.get()) : ResponseEntity.notFound().build();
-	}
+	}*/
 	
 	@GetMapping
 	@ApiOperation(value="Busca e retorna lista de usuarios")
 	private ResponseEntity<List<Usuario>> findAll(){
 		return ResponseEntity.ok(repositoryUsuario.findAll());
+		
 	}
 	
 	@GetMapping("/{id}")
-	@ApiOperation(value="Busca e retorna o usuario pelo id")
-	private ResponseEntity<Usuario> findById(@PathVariable long id){
-		return repositoryUsuario.findById(id).map(resp -> ResponseEntity.ok(resp)).
-				orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<Usuario> GetById(@PathVariable long id) {
+		return repositoryUsuario.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
+	
+	
 	
 	@GetMapping("/nome/{nome}")
 	@ApiOperation(value="Busca e retorna o usuario pelo nome")
@@ -105,7 +106,7 @@ public class UsuarioController {
 		repositoryUsuario.deleteById(id);
 	}
 	
-	@DeleteMapping("/comunidade/delete/{id_comunidade}/{cnpj}")
+/*	@DeleteMapping("/comunidade/delete/{id_comunidade}/{cnpj}")
 	@ApiOperation(value="Busca e deleta a comunidade pelo id_comunidade/cnpj do usuario")
     public ResponseEntity<?> deletarComunidade(
             @PathVariable(value = "cnpj") String usuarioCnpj,
@@ -115,5 +116,5 @@ public class UsuarioController {
             return new ResponseEntity<String>("Comunidade ou Cnpj inválido", HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<Usuario>(HttpStatus.ACCEPTED);
-    }
+    }*/
 }

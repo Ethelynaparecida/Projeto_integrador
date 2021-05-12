@@ -4,6 +4,7 @@ package br.com.doafood.controller;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,10 @@ import io.swagger.annotations.ApiOperation;
 public class ComunidadeController {
 	@Autowired
 	private ComunidadeRepository repository;
+	
 	private @Autowired ComunidadeService serviceComunidade;
 	
-	@ApiOperation(value="Retorna lista de comunidades")
+	
 	@GetMapping
 	private ResponseEntity<List<Comunidade>> findAll(){
 		return ResponseEntity.ok(repository.findAll());
@@ -50,13 +52,24 @@ public class ComunidadeController {
 		return ResponseEntity.ok(repository.findBySobreContainingIgnoreCase(sobre));
 	}
 	
-	@PostMapping("/inserirPublicacao/{idComunidade}")
+	@PostMapping
+	public ResponseEntity<Comunidade> post (@RequestBody Comunidade comunidade){
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(repository.save(comunidade));
+	}
+	
+	/*@PostMapping
 	@ApiOperation(value="Insere dados e retorna a publicação")
-	public ResponseEntity <Publicacao> postPublicacao (@RequestBody Publicacao novaPublicacao,
-			@PathVariable (value = "idComunidade") Long idComunidade){
+	public ResponseEntity <Comunidade> postPublicacao (@RequestBody Publicacao novaPublicacao, Long idComunidade){
 		Optional<Publicacao> postPublicacao = serviceComunidade.criarPublicacao(idComunidade, novaPublicacao);
 		return !postPublicacao.isEmpty() ? ResponseEntity.ok(postPublicacao.get()) : ResponseEntity.notFound().build();
 	}
+	
+	@PostMapping
+	@ApiOperation(value="Busca e retorna a peblicação pela lista de id")
+	public ResponseEntity<Publicacao> post(@RequestBody Publicacao id) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(id));
+	}*/
 		
 	@PutMapping
 	@ApiOperation(value="Modifica os dados da comunidade")

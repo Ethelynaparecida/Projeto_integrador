@@ -1,0 +1,28 @@
+.fs-16{
+    font-size: 16pt;
+}
+a{
+    cursor: pointer;
+    
+}
+.fa:hover{
+    color: black;
+}
+
+.linkBlack:hover{
+    
+    color: black;
+}
+
+.imgLogo{
+    width: 100px;
+    margin: 0;
+}
+
+#bg{
+    background-color:#556B2F;
+    
+}
+p{
+    margin: 0;
+}

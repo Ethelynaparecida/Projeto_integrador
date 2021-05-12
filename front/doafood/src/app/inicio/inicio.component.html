@@ -1,0 +1,234 @@
+<!--apresentação-->
+<div class="container-fluid ">
+    <div class="row vebg  d-flex align-items-center ">
+        <div class="col-md-6 text-white d-flex align-items-center ">
+
+
+
+            <button class="btn btn-light mr-2" type="button" data-toggle="modal" data-target="#novaPostagem">Nova
+                Postagem</button>
+            <a class="btn btn-outline-light" href="#postagens">Ver Postagens</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!--apresentação-->
+
+
+
+<!--Postagens-->
+
+<div class="container mt-5 mb-5 " id="postagens">
+
+    <!--Navegação-->
+
+    <!--Menu Postagens-->
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true">Todas as Posatgens</a>
+
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="false">Postagens por Comunidade</a>
+
+            <a (click)='getByIdUser()' class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Minhas Postagens</a>
+        </div>
+    </nav>
+    <!--/Menu Postagens-->
+
+    <div class="tab-content" id="nav-tabContent">
+        <!--Todas as postagens-->
+        <div class="tab-pane fade show active mt-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+            <div class="card-deck">
+                <div class="card border-success mb-3" style="max-width: 18rem;" *ngFor='let item of listaPostagem'>
+                    <div class="card-header bg-transparent border-success ">
+                        <small class="text-success">{{item.usuario.nome}}->
+                        </small>
+                        <small class="text-muted">{{item.comunidade.nome}}
+                        </small>
+                    </div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">{{item.quantidade}}</h5>
+                        <p class="card-text">{{item.categoria}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success">
+                        <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                            'HH:mm'}}
+
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--/Todas as postagens-->
+        <!--Postagens por Comunidade-->
+        <div class="tab-pane fade mt-2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="card-deck">
+                <div class="card border-secondary  mb-3" style="max-width: 18rem;" *ngFor='let item of listaPostagem'>
+                    <div class="card-header bg-transparent border-secondary  ">
+                        <small class="text-secondary ">{{item.usuario.nome}}->
+                        </small>
+                        <small class="text-muted">{{item.comunidade.nome}}
+                        </small>
+                    </div>
+                    <div class="card-body text-secondary ">
+                        <h5 class="card-title">{{item.quantidade}}</h5>
+                        <p class="card-text">{{item.categoria}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-secondary ">
+                        <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                            'HH:mm'}}
+
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--/Postagens por Comunidade-->
+        <!--Minhas Postagens-->
+        <div class="tab-pane fade mt-2" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="card-deck">
+                <div class="card border-success mb-3" style="max-width: 18rem;" *ngFor='let item of user.postagem'>
+                    <div class="card-header bg-transparent border-success ">
+
+                        <small class="text-muted">{{item.comunidade.nome}}
+                        </small>
+                    </div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">{{item.quantidade}}</h5>
+                        <p class="card-text">{{item.categoria}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success">
+                        <div>
+                            <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                                'HH:mm'}} </small>
+                        </div>
+                        <!--<div>
+                            <button type="button" class="btn btn-outline-danger">Danger</button>
+                            <button  type="button" data-toggle="modal" data-target="#editarPostagem"
+                                class="btn btn-outline-warning">Editarmodal</button>
+                        </div>-->
+
+
+                        <div class="mt-2">
+                            <button [routerLink]="['/postagem-delet', item.id]" type="button"
+                                class="btn mr-3 btn-outline-danger">Excluir</button>
+                            <button [routerLink]="['/postagem-edit', item.id]" type="button" data-toggle="modal"
+                                data-target="#editarPostagem" class="btn btn-outline-warning">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/Minhas Postagens-->
+    </div>
+
+
+    <!--/Navegação-->
+
+
+    <!-- Modal para scroll-->
+    <div class="modal fade" id="novaPostagem" tabindex="-1" role="dialog" aria-labelledby="QuantidadeModalCentralizado"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="QuantidadeModalCentralizado">Nova Postagem</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Formulario nova postagem-->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="quantidade">Título</label>
+                        <input [(ngModel)]="postagem.quantidade" type="text" class="form-control" id="quantidade"
+                            placeholder="Digite o título">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        <textarea [(ngModel)]="postagem.categoria" class="form-control" id="categoria"
+                            rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comunidade">Escolha seu comunidade ou <a routerLink='/comunidade'
+                                data-dismiss="modal">cadastre um
+                                novo</a>:
+                        </label>
+                        <select [(ngModel)]='idComunidade' (change)='getByIdComunidade()' class="form-control"
+                            name="comunidade" id="comunidade">
+                            <option *ngFor='let item of listaComunidades' value='{{item.id}}'>
+                                {{item.nome}}
+                            </option>
+                        </select>
+                    </div>
+                    <!--/Formulario nova postagem-->
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)='enviar()'
+                        data-dimiss='modal'>Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal para scroll-->
+
+
+    <!-- Modal editar postagem <div class="modal fade" id="editarPostagem" tabindex="-1" role="dialog" aria-labelledby="QuantidadeModalCentralizado"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="QuantidadeModalCentralizado">Atualizar Postagem</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="quantidade">Título</label>
+                        <input [(ngModel)]="postagem.quantidade" type="text" class="form-control" id="quantidade"
+                            placeholder="Digite o título">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        <textarea [(ngModel)]="postagem.categoria" class="form-control" id="categoria" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comunidade">Escolha seu comunidade ou <a routerLink='/comunidade' data-dismiss="modal">cadastre um
+                                novo</a>:
+                        </label>
+                        <select [(ngModel)]='idComunidade' (change)='getByIdComunidade()' class="form-control" name="comunidade"
+                            id="comunidade">
+                            <option *ngFor='let item of listaComunidades' value='{{item.id}}'>
+                                {{item.nome}}
+                            </option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)='atualizarPostagem()'
+                        data-dimiss='modal'>Atualizar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- /Modal editar postagem-->

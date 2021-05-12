@@ -1,0 +1,41 @@
+.bg {
+    background-color: #556B2F;
+    color: aliceblue;
+}
+
+.fa {
+    font-size: 27pt;
+    color: #acb950;
+    padding-bottom: 5px;
+}
+
+.fa:hover {
+    color: white;
+}
+
+ul.social-network {
+    list-style: none;
+    padding: 0px;
+}
+
+ul.social-network li {
+    text-align: center;
+    margin: 0px;
+}
+
+.text-white {
+    text-align: center;
+    color: #acb950;
+}
+
+p {
+    padding: 0px;
+}
+
+h3 {
+    padding-top: 3px;
+}
+
+footer{
+    border-radius: 5px;
+}

@@ -1,6 +1,7 @@
 package br.com.doafood.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -45,6 +47,10 @@ public class Usuario {
 	private String telefone;
 	
 	private String tipo;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Publicacao >publicacao;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
@@ -141,5 +147,14 @@ public class Usuario {
 		this.minhasComunidades = minhasComunidades;
 	}
 
+	public List<Publicacao> getPublicacao() {
+		return publicacao;
+	}
+
+	public void setPublicacao(List<Publicacao> publicacao) {
+		this.publicacao = publicacao;
+	}
+	
+	
 	
 }
