@@ -1,9 +1,11 @@
 package org.generation.doaFood.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.generation.doaFood.model.Postagem;
 import org.generation.doaFood.repository.PostagemRepository;
+import org.generation.doaFood.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/postagens")
 @CrossOrigin(origins ="*",allowedHeaders="*")
@@ -24,6 +28,9 @@ public class PostagemController {
 
 	@Autowired
 	private PostagemRepository repository;
+	
+	@Autowired
+	private UsuarioService userRepos;
 	
 	@GetMapping
 	public ResponseEntity<List<Postagem>> GetAll(){
@@ -34,6 +41,15 @@ public class PostagemController {
 	public ResponseEntity<Postagem> GetById (@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@PostMapping("/inscrever")	
+	@ApiOperation(value="Retorna usuario inscrito")
+	public ResponseEntity<?> inscreverComunidade (
+			 Long idUsuario,
+			 Long idPostagem){
+		Optional<Postagem> dto = userRepos.inscreverComunidade(idPostagem, idUsuario);
+		return !dto.isEmpty() ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
 	}
 	
 	

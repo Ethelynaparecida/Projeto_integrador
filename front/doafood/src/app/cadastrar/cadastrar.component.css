@@ -1,5 +1,4 @@
-
-  .vebg {
+.vebg {
     border-radius: 30px;
 }
 
@@ -8,10 +7,9 @@
 }
 
 .bg-img {
-    background-image: url(../../assets/img/grad3.jpg);
+    background-image: url(https://i.imgur.com/DU2A3M1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 720px;
 }
 
 button {
@@ -37,6 +35,13 @@ a:hover {
     margin-top: 0px;
     padding-bottom: 5px;
     margin-bottom: 5px;
+}
+
+input:focus:invalid {
+    background: #fff url(https://i.imgur.com/aF1Prwh.png)  no-repeat 99%  center ;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535;
+   
 }
 
 /*Estilo radio*/

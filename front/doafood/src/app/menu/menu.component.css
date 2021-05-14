@@ -26,3 +26,12 @@ a{
 p{
     margin: 0;
 }
+
+.navfonte{
+    color: azure;
+    font-size: 30px;
+}
+
+.navfonte:hover{
+    color: #acb950;
+}

@@ -28,7 +28,8 @@ const routes: Routes = [
   {path: 'postagem-edit/:id', component: PostagemEditComponent},
   {path: 'postagem-delet/:id', component: PostagemDeletComponent},
   {path: 'user-edit/:id', component: UsuarioEditComponent},
-  {path: 'home', component: HomeComponent}
+  {path: 'home', component: HomeComponent},
+  {path:'inicio/:id', component: InicioComponent}
 
 
 ];

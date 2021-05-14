@@ -1,0 +1,17 @@
+.card-img-top{
+    border-radius: 50%;
+    width: 150px;
+   align-self: center;
+   margin-top: 5px;
+}
+
+.textofonte{
+    font-size: 18px;
+    text-align: justify;
+    text-justify: inter-word;
+    color: rgb(3, 85, 3);
+}
+
+.fontGo{
+    font-family: 'Noto Sans', sans-serif;
+}

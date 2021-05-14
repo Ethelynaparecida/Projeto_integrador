@@ -18,25 +18,25 @@ export class CadastrarComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) { }
-    
+
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0)
   }
 
-  confirmSenha(event: any){
+  confirmSenha(event: any) {
     this.confirmarSenha = event.target.value
 
   }
 
-  tipoUser(event: any){
+  tipoUser(event: any) {
     this.tipoUsuario = event.target.value
   }
 
-  cadastrar(){
+  cadastrar() {
     this.user.tipo = this.tipoUsuario
-    if(this.user.senha != this.confirmarSenha){
+    if (this.user.senha != this.confirmarSenha) {
       alert('As senhas estão diferentes')
-    }else{
+    } else {
       this.authService.cadastrar(this.user).subscribe((resp: User) => {
         this.user = resp
         this.router.navigate(['/entrar'])
@@ -44,6 +44,10 @@ export class CadastrarComponent implements OnInit {
       })
     }
 
+  }
+
+  onSubmitTemplateBased(value: any) {
+    console.log(value);
   }
 
 }

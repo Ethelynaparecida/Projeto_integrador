@@ -1,3 +1,5 @@
+import { Postagem } from './../model/Postagem';
+
 import { environment } from './../../environments/environment.prod';
 import { AuthService } from './../service/auth.service';
 import { User } from './../model/User';
@@ -5,7 +7,7 @@ import { Comunidade } from 'src/app/model/Comunidade';
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Postagem } from '../model/Postagem';
+
 
 import { PostagemService } from '../service/postagem.service';
 import { ComunidadeService } from '../service/comunidade.service';
@@ -22,7 +24,7 @@ export class InicioComponent implements OnInit {
   postagem: Postagem = new Postagem()
   listaPostagem: Postagem[]
   
- 
+
 
   comunidade: Comunidade = new Comunidade()
   listaComunidades: Comunidade[]
@@ -30,9 +32,13 @@ export class InicioComponent implements OnInit {
 
   user: User = new User()
   idUser = environment.id
+  tipo = environment.tipo
 
+  ok = true
 
- 
+  
+
+  
 
   constructor(
     private router : Router,
@@ -50,9 +56,15 @@ export class InicioComponent implements OnInit {
       this.router.navigate(['/entrar'])
     }
 
+    console.log(environment.tipo)
+
     this.getAllComunidades()
     this.getAllPostagem()
     this.getByIdUser()
+
+    if (this.tipo == 'rec'){
+      this.ok = false
+    }
   }
 
   enviar(){
@@ -71,9 +83,7 @@ export class InicioComponent implements OnInit {
 
   }
 
-  atualizarPostagem(){
-
-  }
+  
 
   getAllComunidades(){
 
@@ -94,6 +104,8 @@ export class InicioComponent implements OnInit {
   getAllPostagem(){
     this.postagemService.getAllPostagens().subscribe((resp: Postagem[]) =>{
       this.listaPostagem = resp
+
+      console.log(environment.tipo)
     })
   }
 
@@ -105,6 +117,19 @@ export class InicioComponent implements OnInit {
 
     })
   }
+  
 
+  InscreverPostagem() {
+    this.comunidade.id = this.idComunidade
+    this.postagem.comunidade = this.comunidade
+
+    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
+      this.postagem = resp
+      this.router.navigate(['/inicio'])
+      alert("Atualização completa!")
+
+
+    })
+  }
 
 }
