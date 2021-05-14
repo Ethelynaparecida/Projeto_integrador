@@ -66,8 +66,8 @@
                         <td>{{item.cidade}}</td>
                         <td>{{item.sobre}}</td>
                         <td class="d-flex justify-content-end">
-                            <button class="btn btn-info mr-3" >Editar</button>
-                            <button class="btn btn-danger"  >Apagar</button>
+                            <button  [routerLink]="['/comunidade-edit', item.id]" class="btn btn-info mr-3" >Editar</button>
+                            <button  [routerLink]="['/comunidade-delete', item.id]" class="btn btn-danger"  >Apagar</button>
                         </td>
                     </tr>
                 </tbody>

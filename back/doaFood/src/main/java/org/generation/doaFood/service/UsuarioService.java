@@ -4,18 +4,27 @@ import java.nio.charset.Charset;
 import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
+import org.generation.doaFood.model.Comunidade;
+import org.generation.doaFood.model.Postagem;
 import org.generation.doaFood.model.Usuario;
 import org.generation.doaFood.model.UsuarioLogin;
+import org.generation.doaFood.repository.ComunidadeRepository;
+import org.generation.doaFood.repository.PostagemRepository;
 import org.generation.doaFood.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+
 
 @Service
 public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository repository;
+	
+	@Autowired
+	private PostagemRepository Postrepository;
 
 	public Usuario CadastrarUsuario(Usuario usuario) {
 		Optional<Usuario> usuarioExistente = repository.findByEmail(usuario.getEmail());
@@ -63,6 +72,28 @@ public class UsuarioService {
 
 		return null;
 	}
+	
+	public Optional<Postagem> inscreverComunidade(Long idComunidade, Long idUsuario) {
+
+		Optional <Postagem> postagem = Postrepository.findById(idComunidade);
+
+		Optional<Usuario> usuario = repository.findById(idUsuario);
+
+		if (postagem.isPresent() && usuario.isPresent()) {
+
+			postagem.get().getInscricao().add(usuario.get());
+
+			return Optional.ofNullable(Postrepository.save(postagem.get()));
+
+		} else {
+			return Optional.empty();
+		}
+
+	}
+	
+	
+	
+	
 	
 	public Optional<Usuario> atualizarUsuario(Usuario usuario){
 		

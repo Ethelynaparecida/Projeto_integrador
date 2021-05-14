@@ -30,6 +30,10 @@ a:hover{
     color: #acb950;
 }
 
+.link{
+    color: #acb950;
+}
+
 .img-br{
     background-image: url(https://i.imgur.com/fISmU5z.jpg);
    
@@ -40,4 +44,7 @@ a:hover{
 }
 .box{
     box-shadow: 5px 3px 3px  rgb(189, 221, 168);
+}
+.backgo{
+    min-height: 500px;
 }

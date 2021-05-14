@@ -40,5 +40,16 @@ label, p{
 }
 
 body{
-    background-image: linear-gradient( #acb950, #f4ffdb);
+    background-image: linear-gradient( #bdc95f, #f4ffdb);
+    background-repeat: no-repeat;
+    min-height: 720px;
+}
+.titulofonte{
+    font-family: 'Kosugi Maru', sans-serif;
+}
+.textofonte{
+    font-family: 'Noto Sans', sans-serif;
+}
+.navfonte{
+    font-family: 'Noto Sans JP', sans-serif;
 }
