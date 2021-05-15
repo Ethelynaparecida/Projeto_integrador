@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { ComunidadeService } from 'src/app/service/comunidade.service';
 import { environment } from 'src/environments/environment.prod';
+import { AlertasService } from 'src/app/service/alertas.service';
 
 @Component({
   selector: 'app-postagem-delet',
@@ -36,7 +37,8 @@ export class PostagemDeletComponent implements OnInit {
     private route: ActivatedRoute,
     private postagemService: PostagemService,
     private comunidadeService: ComunidadeService,
-    private auth: AuthService
+    private auth: AuthService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -59,8 +61,8 @@ export class PostagemDeletComponent implements OnInit {
   apagarPostagem() {
     this.postagemService.deletePostagem(this.idPost).subscribe(() => {
       this.router.navigate(['/inicio'])
-      alert('Postagem apagada com Sucesso!')
-      
+      this.alertas.showAlertSuccess('Postagem apagada com Sucesso!')
+
     })
   }
 

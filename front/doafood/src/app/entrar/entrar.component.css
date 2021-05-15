@@ -9,7 +9,7 @@
 
 
 .border{
-    
+
     border-radius: 30px;
 }
 button{
@@ -23,7 +23,7 @@ button:hover{
 
 a{
     color: white;
-    
+
 }
 
 a:hover{
@@ -36,11 +36,11 @@ a:hover{
 
 .img-br{
     background-image: url(https://i.imgur.com/fISmU5z.jpg);
-   
+
     margin: 0;
     background-repeat:no-repeat;
     background-size: cover;
-   /* box-shadow: 70px -20px teal;*/   
+   /* box-shadow: 70px -20px teal;*/
 }
 .box{
     box-shadow: 5px 3px 3px  rgb(189, 221, 168);

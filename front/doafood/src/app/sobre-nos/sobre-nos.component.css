@@ -15,3 +15,10 @@
 .fontGo{
     font-family: 'Noto Sans', sans-serif;
 }
+
+.logo{
+
+  height: 100px;
+  width: 100px;
+  margin: 0;
+}

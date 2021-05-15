@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PostagemService } from '../service/postagem.service';
 import { ComunidadeService } from '../service/comunidade.service';
 import { UserLogin } from '../model/UserLogin';
+import { AlertasService } from '../service/alertas.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
   listaPostagem: Postagem[]
-  
+
 
 
   comunidade: Comunidade = new Comunidade()
@@ -36,16 +37,17 @@ export class InicioComponent implements OnInit {
 
   ok = true
 
-  
 
-  
+
+
 
   constructor(
     private router : Router,
     private route: ActivatedRoute,
     private postagemService: PostagemService,
     private comunidadeService: ComunidadeService,
-    private auth: AuthService
+    private auth: AuthService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -70,20 +72,20 @@ export class InicioComponent implements OnInit {
   enviar(){
     this.comunidade.id = this.idComunidade
     this.postagem.comunidade = this.comunidade
-    
+
     this.user.id = this.idUser
     this.postagem.usuario = this.user
 
     this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
     this.postagem = resp
-    alert('Postagem realizado com sucesso!')
+    this.alertas.showAlertSuccess('Postagem realizado com sucesso!')
     this.postagem = new Postagem()
     this.getAllPostagem()
     })
 
   }
 
-  
+
 
   getAllComunidades(){
 
@@ -117,7 +119,7 @@ export class InicioComponent implements OnInit {
 
     })
   }
-  
+
 
   InscreverPostagem() {
     this.comunidade.id = this.idComunidade
@@ -126,7 +128,7 @@ export class InicioComponent implements OnInit {
     this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp
       this.router.navigate(['/inicio'])
-      alert("Atualização completa!")
+      this.alertas.showAlertInfo("Atualização completa!")
 
 
     })

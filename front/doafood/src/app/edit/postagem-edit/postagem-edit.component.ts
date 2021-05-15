@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { ComunidadeService } from 'src/app/service/comunidade.service';
 import { environment } from 'src/environments/environment.prod';
+import { AlertasService } from 'src/app/service/alertas.service';
 
 @Component({
   selector: 'app-postagem-edit',
@@ -35,7 +36,8 @@ export class PostagemEditComponent implements OnInit {
     private route: ActivatedRoute,
     private postagemService: PostagemService,
     private comunidadeService: ComunidadeService,
-    private auth: AuthService
+    private auth: AuthService,
+    private alertas : AlertasService
   ) { }
 
   ngOnInit() {
@@ -64,7 +66,7 @@ export class PostagemEditComponent implements OnInit {
     this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp
       this.router.navigate(['/inicio'])
-      alert("Atualização completa!")
+     this.alertas.showAlertSuccess("Atualização completa!")
 
 
     })
