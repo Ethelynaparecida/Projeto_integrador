@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,8 @@ import { ComunidadeEditComponent } from './edit/comunidade-edit/comunidade-edit.
 import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 import { UsuarioEditComponent } from './edit/usuario-edit/usuario-edit.component';
 import { HomeComponent } from './home/home.component';
+import { AlertasComponent } from './alertas/alertas.component';
+
 
 
 
@@ -40,13 +43,15 @@ import { HomeComponent } from './home/home.component';
     ComunidadeComponent,
     SobreNosComponent,
     UsuarioEditComponent,
-    HomeComponent
+    HomeComponent,
+    AlertasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [
     {

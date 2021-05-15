@@ -4,6 +4,7 @@ import { User } from 'src/app/model/User';
 import { AuthService } from 'src/app/service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { AlertasService } from 'src/app/service/alertas.service';
 
 @Component({
   selector: 'app-usuario-edit',
@@ -28,7 +29,8 @@ export class UsuarioEditComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -53,12 +55,12 @@ export class UsuarioEditComponent implements OnInit {
   atualizar() {
     this.user.tipo = this.tipoUsuario
     if (this.user.senha != this.confirmarSenha) {
-      alert('As senhas estão diferentes')
+      this.alertas.showAlertDanger('As senhas estão diferentes')
     } else {
       this.auth.putUser(this.user).subscribe((resp: User) => {
         this.user = resp
         this.router.navigate(['/inicio'])
-        alert('Usuarie atualizado com sucesso!')
+        this.alertas.showAlertSuccess('Usuarie atualizado com sucesso!')
       })
     }
 
