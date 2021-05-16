@@ -17,11 +17,17 @@
 button {
     border: solid #acb950;
     background-color: #acb950;
+
+    color: white;
+
 }
 
 button:hover {
     border: solid #acb950;
     background-color: #556B2F;
+
+    color: white;
+
 }
 
 a {
@@ -75,4 +81,9 @@ input[type=radio]:active {
 
 input[type=radio]:checked::after {
     content: '\f192';
+
+}
+button{
+    font-family: 'Noto Sans', sans-serif;
+
 }

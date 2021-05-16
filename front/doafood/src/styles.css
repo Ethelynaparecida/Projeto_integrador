@@ -24,6 +24,7 @@ div{
     font-family: 'Font Awesome 5 Pro'
 }
 
+
 .vccbg {
     background-color: #eaffb7;
 }
@@ -45,11 +46,17 @@ body{
     min-height: 720px;
 }
 .titulofonte{
-    font-family: 'Kosugi Maru', sans-serif;
+
+    font-family: 'Lato', sans-serif;
 }
 .textofonte{
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 .navfonte{
     font-family: 'Noto Sans JP', sans-serif;
+}
+
+button{
+    font-family: 'Noto Sans', sans-serif;
+
 }

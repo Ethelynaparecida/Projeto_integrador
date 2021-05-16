@@ -44,6 +44,12 @@ input:focus:invalid {
    
 }
 
+
+button{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+
 /*Estilo radio*/
 
 .fancy label {
