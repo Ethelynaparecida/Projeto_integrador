@@ -1,7 +1,9 @@
 .card-img-top{
     border-radius: 50%;
     width: 150px;
+
     height: 150px;
+
    align-self: center;
    margin-top: 5px;
 }

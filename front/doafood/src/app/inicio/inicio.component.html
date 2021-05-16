@@ -161,9 +161,11 @@
                     </div>
 
                     <div class="form-group">
+
                         <label for="comunidade">Escolha seu comunidade ou <a class="link" routerLink='/comunidade'
                                 data-dismiss="modal">cadastre um
                                 novo:</a>
+
                         </label>
                         <select [(ngModel)]='idComunidade' (change)='getByIdComunidade()' class="form-control"
                             name="comunidade" id="comunidade">

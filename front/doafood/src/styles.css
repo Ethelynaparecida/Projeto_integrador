@@ -46,6 +46,7 @@ body{
     min-height: 720px;
 }
 .titulofonte{
+
     font-family: 'Lato', sans-serif;
 }
 .textofonte{
@@ -57,4 +58,5 @@ body{
 
 button{
     font-family: 'Noto Sans', sans-serif;
+
 }

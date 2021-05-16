@@ -31,10 +31,12 @@ a:hover{
 }
 
 .link{
+
     padding:2px;
     color: #acb950;
     border: 2px solid #acb950;
     border-radius: 5px;
+
 }
 
 .img-br{
@@ -51,7 +53,9 @@ a:hover{
 .backgo{
     min-height: 500px;
 }
+
 button{
     font-family: 'Noto Sans', sans-serif;
 }
+
 
