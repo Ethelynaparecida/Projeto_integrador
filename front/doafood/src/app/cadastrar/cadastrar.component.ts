@@ -50,6 +50,10 @@ export class CadastrarComponent implements OnInit {
     console.log(value);
   }
 
+  texto(){
+    
+  }
+
 }
 
 

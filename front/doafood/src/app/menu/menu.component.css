@@ -1,37 +1,41 @@
-.fs-16{
+.fs-16 {
     font-size: 16pt;
 }
-a{
+
+a {
     cursor: pointer;
-    
 }
-.fa:hover{
+
+.fa:hover {
     color: #acb950;
 }
 
-.linkBlack:hover{
-    
+.linkBlack:hover {
     color: #acb950;
 }
 
-.imgLogo{
+.imgLogo {
     width: 100px;
     margin: 0;
+    border: 2px white solid;
+    background-color: white;
+    border-radius: 5px;
 }
 
-#bg{
-    background-color:#556B2F;
-    
+#bg {
+    background-color: white;
 }
-p{
+
+p {
     margin: 0;
 }
 
-.navfonte{
-    color: azure;
+.navfonte {
+    color: #acb950;
     font-size: 30px;
+    font-family: Verdana, Arial, Tahoma, Serif;
 }
 
-.navfonte:hover{
-    color: #acb950;
+.navfonte:hover {
+    color: #556B2F;
 }

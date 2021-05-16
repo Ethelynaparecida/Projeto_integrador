@@ -1,16 +1,16 @@
 .bg {
-    background-color: #556B2F;
-    color: aliceblue;
+  
+    color: #556B2F;
 }
 
 .fa {
-    font-size: 40pt;
+    font-size: 30pt;
     color: #acb950;
     padding-bottom: 5px;
 }
 
 .fa:hover {
-    color: white;
+    color: #556B2F;
 }
 
 ul.social-network {

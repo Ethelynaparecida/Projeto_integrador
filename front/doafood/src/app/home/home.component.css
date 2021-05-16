@@ -3,6 +3,16 @@
       margin: 0;
   }
 
+  .imgbg {
+      background-image: url(../../assets/img/folha_maior.jpg);
+      background-repeat: repeat-y;
+      background-size: cover;
+  }
+
+  .imgbg {
+      background-image: url(../../assets/img/75.jpg);
+  }
+
   .tof {
       filter: grayscale()
   }
@@ -27,10 +37,18 @@
   .tm-social2 {
       width: 50px;
       height: 50px;
-
   }
 
-  p{
-    font-family: 'Montserrat', sans-serif;
+  .branco {
+      background-color: rgba(255, 255, 255, 0.3);
+      padding: 4px;
+      border-radius: 10px;
+  }
 
+  p {
+      font-weight: 500;
+  }
+
+  body {
+      background-image: url(../../assets/img/fundo.jpg);
   }

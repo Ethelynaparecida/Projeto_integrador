@@ -22,6 +22,7 @@ import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 import { UsuarioEditComponent } from './edit/usuario-edit/usuario-edit.component';
 import { HomeComponent } from './home/home.component';
 import { AlertasComponent } from './alertas/alertas.component';
+import { ComunidadeViewComponent } from './view/comunidade-view/comunidade-view.component';
 
 
 
@@ -44,7 +45,8 @@ import { AlertasComponent } from './alertas/alertas.component';
     SobreNosComponent,
     UsuarioEditComponent,
     HomeComponent,
-    AlertasComponent
+    AlertasComponent,
+    ComunidadeViewComponent
   ],
   imports: [
     BrowserModule,

@@ -24,12 +24,14 @@ export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
   listaPostagem: Postagem[]
+  listaComunidade : Comunidade[]
 
 
 
   comunidade: Comunidade = new Comunidade()
   listaComunidades: Comunidade[]
   idComunidade: number
+  categoriaPost: string
 
   user: User = new User()
   idUser = environment.id
@@ -69,6 +71,7 @@ export class InicioComponent implements OnInit {
     }
   }
 
+  
   enviar(){
     this.comunidade.id = this.idComunidade
     this.postagem.comunidade = this.comunidade
@@ -111,6 +114,17 @@ export class InicioComponent implements OnInit {
     })
   }
 
+  findPostagemByCategoria(){
+    if(this.categoriaPost == ''){
+      this.getAllPostagem()
+    }
+    else{
+      this.postagemService.getByCategoriaPostagem(this.categoriaPost).subscribe((resp: Postagem[])=>{
+        this.listaPostagem = resp
+      })
+    }
+  }
+
 
 
   getByIdUser(){
@@ -133,5 +147,4 @@ export class InicioComponent implements OnInit {
 
     })
   }
-
 }

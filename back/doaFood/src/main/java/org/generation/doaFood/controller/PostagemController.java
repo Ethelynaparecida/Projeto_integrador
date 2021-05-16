@@ -43,6 +43,17 @@ public class PostagemController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	@GetMapping("/tituloPostagem/{categoria}")
+    public ResponseEntity<Object> GetByTitulo(@PathVariable(value = "categoria") String categoria){
+        List<Postagem> lista = repository.findAllByCategoriaContainingIgnoreCase(categoria);
+
+        if (lista.isEmpty()) {
+            return  ResponseEntity.badRequest().body("Categoria inesistente!");
+        } else {
+            return ResponseEntity.ok(lista);
+        }
+    }
+	
 	@PostMapping("/inscrever")	
 	@ApiOperation(value="Retorna usuario inscrito")
 	public ResponseEntity<?> inscreverComunidade (

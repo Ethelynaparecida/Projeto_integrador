@@ -1,49 +1,49 @@
 <div class="bg-img">
-    <div class="container-fluid">
+    <div class="container-fluid ">
 
         <div class="row d-flex justify-content-center  ">
             <!-- Imagem lateral cadastro-->
 
             <!-- Formulario de cadastro-->
-            <div class="col-md-7 mt-3 mb-3 vebg text-white">
+            <div class="col-md-5 mt-3 mb-3 vcbg border text-white">
 
                 <div class="row d-flex justify-content-center">
-                    
-                        <div class="col-md-12"  >
 
-                            <h2 class="text-center mt-2">Cadastro</h2>
+                    <div class="col-md-8">
 
-                            <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <input [(ngModel)]='user.nome' class="form-control atencao" type="text" name="nome" id="nome"
-                                    placeholder="Nome completo" required>
-                            </div>
+                        <h2 class="text-center mt-2">Cadastro</h2>
 
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input [(ngModel)]='user.email' class="form-control" type="text" name="email" id="email"
-                                    placeholder="Usuário" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input [(ngModel)]='user.nome' class="form-control atencao" type="text" name="nome"
+                                id="nome" placeholder="Nome completo" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="telefone">Telefone</label>
-                                <input [(ngModel)]='user.telefone' class="form-control" type="text" name="telefone"
-                                    id="telefone" placeholder="Telefone" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input [(ngModel)]='user.email' class="form-control" type="text" name="email" id="email"
+                                placeholder="Usuário" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="senha">Senha</label>
-                                <input (input)='confirmSenha($event)' class="form-control" type="password" name="senha"
-                                    id="senha" placeholder="Senha" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input [(ngModel)]='user.telefone' class="form-control" type="text" name="telefone"
+                                id="telefone" placeholder="Telefone" required>
+                        </div>
 
-                            <div class="form-group ">
-                                <label for="confirmSenha">Confirmar Senha</label>
-                                <input [(ngModel)]='user.senha' class="form-control" type="password" name="confirmSenha"
-                                    id="confirmSenha" placeholder="Confirme sua senha">
-                            </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input (input)='confirmSenha($event)' class="form-control" type="password" name="senha"
+                                id="senha" placeholder="Senha" required>
+                        </div>
 
-                            <!--<div>
+                        <div class="form-group ">
+                            <label for="confirmSenha">Confirmar Senha</label>
+                            <input [(ngModel)]='user.senha' class="form-control" type="password" name="confirmSenha"
+                                id="confirmSenha" placeholder="Confirme sua senha">
+                        </div>
+
+                        <!--<div>
                                 <label for="tipo">Tipo de Usuário</label>
                                 <select (change)='tipoUser($event)' class="form-control" name="tipo" id="tipo">
                                     <option>Selecione um tipo de usuário:</option>
@@ -51,41 +51,43 @@
                                     <option value="doa">Doador</option>
                                 </select>
                             </div>-->
-                            <div>
-                                <main class="fancy">
-                                    <section class="demo">
+                        <div>
+                            <main class="fancy">
+                                <section class="demo">
 
-                                        <div class="form-group">
-                                            <label for="tipo" class="pr-1">Escolha o tipo de usuario:</label>
+                                    <div class="form-group">
+                                        <label for="tipo" class="pr-1">Escolha o tipo de usuario:</label>
 
-                                            <div class="custom-control-inline" required>
-                                                <label for="Recebedor">
-                                                    <input [(ngModel)]='user.tipo' (change)='tipoUser($event)'
-                                                        id="recebedor" name="yaydio" type="radio" value="rec" />
-                                                    <span>Recebedor</span>
-                                                </label>
-                                            </div>
-                                            <div class="custom-control-inline">
-                                                <label for="Doador">
-                                                    <input [(ngModel)]='user.tipo' (change)='tipoUser($event)'
-                                                        id="doador" name="yaydio" type="radio" value="doa" />
-                                                    <span>Doador</span>
-                                                </label>
-                                            </div>
-
-
+                                        <div class="custom-control-inline" required>
+                                            <label for="Recebedor">
+                                                <input [(ngModel)]='user.tipo' (change)='tipoUser($event)'
+                                                    id="recebedor" name="yaydio" type="radio" value="rec" />
+                                                <span>Recebedor</span>
+                                            </label>
                                         </div>
-                                    </section>
-                                </main>
-                            </div>
+                                        <div class="custom-control-inline">
+                                            <label for="Doador">
+                                                <input [(ngModel)]='user.tipo' (change)='tipoUser($event)' id="doador"
+                                                    name="yaydio" type="radio" value="doa" />
+                                                <span>Doador</span>
+                                            </label>
+                                        </div>
+                                        <div (click)="texto()" class="custom-control-inline">
+                                            <img src="../../assets/img/favicon.ico" width="18px">
+                                        </div>
 
-                            <div class="d-flex justify-content-center mt-3 mb-2">
-                                <button type="submit" routerLink='/entrar' class="btn text-white mr-4">Cancelar</button>
-                                <button type="submit" class="btn text-light" (click)='cadastrar()'>Cadastrar</button>
-                            </div>
-
+                                    </div>
+                                </section>
+                            </main>
                         </div>
-                    
+
+                        <div class="d-flex justify-content-center mt-3 mb-2">
+                            <button type="submit" routerLink='/entrar' class="btn text-white mr-4">Cancelar</button>
+                            <button type="submit" class="btn text-light" (click)='cadastrar()'>Cadastrar</button>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
             <!--/Formulario de cadastro-->

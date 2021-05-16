@@ -26,6 +26,10 @@ export class PostagemService {
     return this.http.get<Postagem>(`http://localhost:8080/postagens/${id}`, this.token)
   }
 
+  getByCategoriaPostagem(categoria: string): Observable<Postagem[]>{
+    return this.http.get<Postagem[]>(`http://localhost:8080/postagens/tituloPostagem/${categoria}`, this.token)
+  }
+
   postPostagem(postagem : Postagem): Observable<Postagem>{
     return this.http.post<Postagem>('http://localhost:8080/postagens', postagem, this.token)
   }

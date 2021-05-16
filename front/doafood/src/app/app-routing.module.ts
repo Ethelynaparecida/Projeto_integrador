@@ -12,6 +12,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ComunidadeDeleteComponent } from './edit/comunidade-delete/comunidade-delete.component';
 import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 import { HomeComponent } from './home/home.component';
+import { ComunidadeViewComponent } from './view/comunidade-view/comunidade-view.component';
 
 
 
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path: 'postagem-delet/:id', component: PostagemDeletComponent},
   {path: 'user-edit/:id', component: UsuarioEditComponent},
   {path: 'home', component: HomeComponent},
-  {path:'inicio/:id', component: InicioComponent}
+  {path:'inicio/:id', component: InicioComponent},
+  {path: 'comunidade-view/:id', component: ComunidadeViewComponent}
 
 
 ];

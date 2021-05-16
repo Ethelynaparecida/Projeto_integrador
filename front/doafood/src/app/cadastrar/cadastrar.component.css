@@ -7,18 +7,19 @@
 }
 
 .bg-img {
-    background-image: url(https://i.imgur.com/DU2A3M1.jpg);
+    background-image: url(../../assets/img/fundo.jpg) ;
+   /* background-image: url(https://i.imgur.com/DU2A3M1.jpg);*/
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 button {
-    border: solid #acb950;
+    border: solid white;
     background-color: #acb950;
 }
 
 button:hover {
-    border: solid #acb950;
+    border: solid white;
     background-color: #556B2F;
 }
 
@@ -44,6 +45,10 @@ input:focus:invalid {
    
 }
 
+.ve{
+    font-size: 15px;
+    font-weight: 800;
+}
 
 button{
     font-family: 'Noto Sans', sans-serif;
