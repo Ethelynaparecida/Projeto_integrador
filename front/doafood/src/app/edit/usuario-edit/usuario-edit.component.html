@@ -1,0 +1,94 @@
+<div class="container">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 ve">
+
+            <h2 class="text-center mt-2">Atualizar Usuario</h2>
+
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input [(ngModel)]='user.nome' class="form-control" type="text" name="nome" id="nome"
+                    placeholder="Nome completo">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input [(ngModel)]='user.email' class="form-control" type="text" name="email" id="email"
+                    placeholder="Email">
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input [(ngModel)]='user.telefone' class="form-control" type="text" name="telefone" id="telefone"
+                    placeholder="Telefone">
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input (input)='confirmSenha($event)' class="form-control" type="password" name="senha" id="senha"
+                    placeholder="Senha">
+            </div>
+
+            <div class="form-group ">
+                <label for="confirmSenha">Confirmar Senha</label>
+                <input [(ngModel)]='user.senha' class="form-control" type="password" name="confirmSenha"
+                    id="confirmSenha" placeholder="Confirme sua senha">
+            </div>
+
+            <div>
+                <label for="tipo">Tipo de Usuário</label>
+                <select (change)='tipoUser($event)' class="form-control" name="tipo" id="tipo">
+                    <option>Selecione um tipo de usuário:</option>
+                    <option value="rec">Recebedor</option>
+                    <option value="doa">Doador</option>
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-center mt-3 mb-3">
+                <button type="submit" routerLink='/inicio' class="btn btn-danger mr-4">Cancelar</button>
+                <button  type="submit" class="btn btn-success" (click)="atualizar()">Atualizar</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" routerLink='/inicio'>Cancelar</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Atualizar</button>
+    </div-->
+</div>
+
+
+
+
+<!--div class="form-group">
+      <label for="usuario">Usuario</label>
+      <input [(ngModel)]='user.usuario' class="form-control" type="text" name="usuario" id="usuario" placeholder="Seu usuario">
+    </div>
+    <div class="form-group">
+      <label for="usuario">Link da Foto</label>
+      <input [(ngModel)]='user.foto' class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto">
+    </div>
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input (input)='confirmSenha($event)' class="form-control" type="password" name="senha" id="senha" placeholder="seu senha">
+    </div>
+    <div class="form-group">
+      <label for="confirmSenha">Senha</label>
+      <input [(ngModel)]='user.senha' class="form-control" type="password" name="confirmSenha" id="confirmSenha"
+          placeholder="Confirme sua senha">
+    </div>
+    <div class="form-group">
+      <label for="tipo">Tipo de Usuario</label>
+      <select class="form-control" name="tipo" id="tipo"
+       (change)='tipoUser($event)' >
+          <option>Selecione um tipo de usuario</option>
+          <option value="normal">Normal</option>
+          <option value="adm">Administrador</option>
+      </select>
+    </div>
+    <div class="d-flex justify-content-center mb-3">
+      <button type="submit" class="btn btn-danger mr-4"routerLink='/entrar'>Cancelar</button>
+      <button type="submit" class="btn btn-success" (click)='cadastrar()'>Cadastrar</button>
+    </div-->

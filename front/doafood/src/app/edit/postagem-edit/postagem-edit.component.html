@@ -1,0 +1,44 @@
+<div class="container mt-5 mb-5">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center ve">Atualizar Postagem</h1>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 ve">
+            <!--Formulario nova postagem-->
+
+            <div class="form-group">
+                <label for="quantidade">Título</label>
+                <input [(ngModel)]="postagem.quantidade" type="text" class="form-control" id="quantidade"
+                    placeholder="Digite o título">
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <textarea [(ngModel)]="postagem.categoria" class="form-control" id="categoria" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="comunidade">Escolha seu comunidade ou <a class="link" routerLink='/comunidade' data-dismiss="modal">cadastre um
+                        novo</a>:
+                </label>
+                <select [(ngModel)]='idComunidade' (change)='getByIdComunidade()' class="form-control" name="comunidade" id="comunidade">
+                    <option *ngFor='let item of listaComunidades' value='{{item.id}}'>
+                        {{item.nome}}
+                    </option>
+                </select>
+            </div>
+            <!--/Formulario nova postagem-->
+
+            
+            <div class="d-flex justify-content-center">
+                <a [routerLink]="['/inicio']" class="btn btn-danger mr-4">Cancelar</a>
+                <button class="btn btn-success" (click)='atualizarPostagem()'>Atualizar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

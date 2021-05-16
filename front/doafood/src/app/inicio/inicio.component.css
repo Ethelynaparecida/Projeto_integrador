@@ -1,0 +1,28 @@
+.fs-55 {
+    font-size: 55pt;
+}
+
+.fs-18 {
+    font-size: 18pt;
+}
+
+#inputComentario {
+    border-radius: 15px;
+}
+
+#button-addon2 {
+    border-radius: 15px;
+}
+
+.btn-link {
+    text-decoration: none;
+}
+.link{
+    padding:2px;
+    color: #556B2F;
+    border: 2px solid #556B2F;
+    border-radius: 5px;
+}
+button{
+    font-family: 'Noto Sans', sans-serif;
+}

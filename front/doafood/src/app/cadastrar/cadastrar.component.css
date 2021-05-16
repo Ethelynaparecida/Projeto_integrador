@@ -1,0 +1,87 @@
+.vebg {
+    border-radius: 30px;
+}
+
+.border {
+    border-radius: 30px;
+}
+
+.bg-img {
+    background-image: url(https://i.imgur.com/DU2A3M1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+button {
+    border: solid #acb950;
+    background-color: #acb950;
+}
+
+button:hover {
+    border: solid #acb950;
+    background-color: #556B2F;
+}
+
+a {
+    color: #acb950;
+}
+
+a:hover {
+    color: white;
+}
+
+.p-0 {
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+input:focus:invalid {
+    background: #fff url(https://i.imgur.com/aF1Prwh.png)  no-repeat 99%  center ;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535;
+   
+}
+
+button{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+/*Estilo radio*/
+
+.fancy label {
+    display: inline-flex;
+    align-items: baseline;
+}
+
+input[type=checkbox], input[type=radio] {
+    position: relative;
+    appearance: none;
+    font-size: inherit;
+    width: 1em;
+    margin: 2px;
+    color: #acb950;
+    outline: none;
+    font-family: 'Font Awesome 5 Pro';
+    transition: 300ms ease-out;
+}
+
+input[type=radio]::after {
+    content: '\f111';
+    display: inline-block;
+    text-align: center;
+    width: 1em;
+}
+
+input[type=radio]:checked::after {
+    font-weight: 900;
+}
+
+input[type=radio]:active {
+    transform: scale(.6);
+}
+
+input[type=radio]:checked::after {
+    content: '\f192';
+}
