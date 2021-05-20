@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "npx compodoc -p tsconfig.doc.json"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +28,7 @@
     "ngx-order-pipe": "^2.1.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
+    "sort-by-typescript": "^1.1.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

@@ -53,22 +53,29 @@
                 </a>
             </li>
 
-            <li class="nav-item pl-3">
-                <a [routerLink]="['user-edit', id]">
-                    <p class=" vc fs-16 m-0">
-                        <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
-                    </p>
-                </a>
-            </li>
+            
         </ul>
 
         <ul class="navbar-nav ml-auto d-flex align-items-center">
-            <li class="nav-item pl-5">
-                <a href="" class="nav-link">
-                    <p class="m-0 font-weight-bold navfonte fs-16 mr-5" *ngIf="tipoMenu()" routerLink="/home">Sair<i
-                            class="fas fa-sign-in-alt"></i></p>
-                </a>
-            </li>
+            <div class="btn-group dropleft">
+                <button type="button" class="btn navfonte dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  +
+                </button>
+                <div class="dropdown-menu pl-2">
+                    <a href="" >
+                        <p class=" fonts  " *ngIf="tipoMenu()" routerLink="/home">Sair <i
+                                class="fas fa-sign-out-alt"></i></p>
+                    </a>
+                    <hr>
+
+                    <a [routerLink]="['user-edit', id]"> 
+                        <p class="  fonts  ">Editar Perfil
+                            <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
+                        </p>
+                    </a>
+                </div>
+              </div>
+            
         </ul>
     </div>
 </nav>

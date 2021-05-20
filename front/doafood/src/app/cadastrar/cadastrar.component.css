@@ -68,7 +68,7 @@ input[type=checkbox], input[type=radio] {
     font-size: inherit;
     width: 1em;
     margin: 2px;
-    color: #acb950;
+    color: white;
     outline: none;
     font-family: 'Font Awesome 5 Pro';
     transition: 300ms ease-out;

@@ -1,5 +1,5 @@
 import { PostagemService } from 'src/app/service/postagem.service';
-import { ComunidadeService } from './../../service/tema.service';
+
 import { Component, OnInit } from '@angular/core';
 import { Postagem } from 'src/app/model/Postagem';
 import { User } from 'src/app/model/User';
@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Comunidade } from 'src/app/model/Comunidade';
 import { AlertasService } from 'src/app/service/alertas.service';
+import { sortBy } from 'sort-by-typescript';
+import { ComunidadeService } from 'src/app/service/comunidade.service';
 
 @Component({
   selector: 'app-comunidade-view',
@@ -21,6 +23,7 @@ export class ComunidadeViewComponent implements OnInit {
   idComunidade: number
   listComunidadePostagem : Postagem[]
   listaComunidades: Comunidade[]
+  novalista: Comunidade[]
 
 
   key = 'data'
@@ -64,8 +67,9 @@ export class ComunidadeViewComponent implements OnInit {
   findByIdComunidade(id: number){
     this.ComunidadeService.getByIdComunidade(id).subscribe((resp: Comunidade)=>{
       this.comunidade = resp
+      
       console.log(id)
-      this.listComunidadePostagem = []
+      this.listComunidadePostagem
       
     })
   }

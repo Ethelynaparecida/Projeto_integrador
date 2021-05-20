@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Comunidade } from '../model/Comunidade';
+import { AlertasService } from '../service/alertas.service';
 import { ComunidadeService } from '../service/comunidade.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class ComunidadeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private comunidadeService: ComunidadeService
+    private comunidadeService: ComunidadeService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,8 @@ export class ComunidadeComponent implements OnInit {
   cadastrar() {
     this.comunidadeService.postComunidade(this.comunidade).subscribe((resp: Comunidade) => {
       this.comunidade = resp
-      alert('Comunidade cadastrado!')
+      this.alertas.showAlertSuccess('Comunidade cadastrada!')
+      
       this.findAllComunidades()
       this.comunidade = new Comunidade()
     }

@@ -1,3 +1,4 @@
+import { AlertasService } from './../service/alertas.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/User';
@@ -16,7 +17,8 @@ export class CadastrarComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -35,12 +37,13 @@ export class CadastrarComponent implements OnInit {
   cadastrar() {
     this.user.tipo = this.tipoUsuario
     if (this.user.senha != this.confirmarSenha) {
-      alert('As senhas estão diferentes')
+     
+      this.alertas.showAlertInfo('As senhas estão diferentes')
     } else {
       this.authService.cadastrar(this.user).subscribe((resp: User) => {
         this.user = resp
         this.router.navigate(['/entrar'])
-        alert('Usuario cadastrado com sucesso!')
+        this.alertas.showAlertSuccess('Cadastro realizado com sucesso!')
       })
     }
 
@@ -51,7 +54,7 @@ export class CadastrarComponent implements OnInit {
   }
 
   texto(){
-    
+    this.alertas.showAlertInfo('Tipo Doador faz postagem sobre doação de alimentos, tipo ira visualizar os dados dos doadores para solicitar a doação')
   }
 
 }

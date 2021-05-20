@@ -24,6 +24,7 @@ export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
   listaPostagem: Postagem[]
+  listaPost: Postagem[]
   listaComunidade : Comunidade[]
 
 
@@ -64,7 +65,7 @@ export class InicioComponent implements OnInit {
 
     this.getAllComunidades()
     this.getAllPostagem()
-    this.getByIdUser()
+   
 
     if (this.tipo == 'rec'){
       this.ok = false
@@ -130,21 +131,10 @@ export class InicioComponent implements OnInit {
   getByIdUser(){
     this.auth.getByIdUser(this.idUser).subscribe((resp: User) =>{
       this.user = resp
-
+    console.log(this.user)
     })
   }
 
 
-  InscreverPostagem() {
-    this.comunidade.id = this.idComunidade
-    this.postagem.comunidade = this.comunidade
-
-    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
-      this.postagem = resp
-      this.router.navigate(['/inicio'])
-      this.alertas.showAlertInfo("Atualização completa!")
-
-
-    })
-  }
+ 
 }

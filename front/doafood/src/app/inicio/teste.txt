@@ -1,0 +1,132 @@
+ <!--Menu Postagens-->
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active ve mr-3 " id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                    role="tab" aria-controls="nav-home" aria-selected="true">Todas as Postagem</a>
+
+
+                <a (click)='getByIdUser()' class="nav-item nav-link mr-5" id="nav-contact-tab" data-toggle="tab"
+                    href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Minhas
+                    Postagens</a>
+
+
+
+            </div>
+            <div>
+                <button class="btn btn-light ve mr-2" type="button" data-toggle="modal" data-target="#novaPostagem">Nova
+                    Postagem</button>
+            </div>
+        </nav>
+        <!--/Menu Postagens-->
+
+        <!--div class="tab-content" id="nav-tabContent"-->
+        <!--Todas as postagens-->
+        <div class="tab-content" id="nav-tabContent">
+            <!--Todas as postagens-->
+            <div class="tab-pane fade show active mt-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                <div class="card text-center mt-5 mb-5" *ngFor='let item of listaPostagem'>
+                    <div class="card-header">
+
+                        <div>
+                            <h2 class="m-0">{{item.usuario.nome}}</h2>
+                            <div>
+                                <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                                    'HH:mm'}}
+
+                                </small>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <h6 class="text-secondary">
+                                <span class="text-muted">Comunidade:</span>{{item.comunidade.nome}}
+                            </h6>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Titulo: {{item.quantidade}}</h5>
+                        <p class="card-text">Categoria: {{item.categoria}}</p>
+
+                    </div>
+                    <!--<div class="card-footer text-muted">
+
+                <button *ngIf="ok" [routerLink]="['/inicio', item.id]" type="button"
+                    class="btn btn-outline-success btn-sm ml-1">Inscrever</button>
+
+            </div>-->
+                </div>
+
+
+
+
+
+
+                <!--  <div class="row">
+            <div class="col-md-8 d-flex justify-content-center mt-3">
+  
+              <div class="tab-pane fade show active mt-5" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  
+                <div class="card-deck">
+                    <div class="card border-success mb-3" style="max-width: 18rem;" *ngFor='let item of listaPostagem'>
+                        <div class="card-header bg-transparent border-success ">
+                            <small class="text-success">{{item.usuario.nome}}->
+                            </small>
+                            <small class="text-muted">{{item.comunidade.nome}}
+                            </small>
+                        </div>
+                        <div class="card-body text-success">
+                            <h5 class="card-title">{{item.quantidade}}</h5>
+                            <p class="card-text">{{item.categoria}}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-success">
+                            <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                                'HH:mm'}}
+  
+                            </small>
+                            <button *ngIf="ok"  [routerLink]="['/inicio', item.id]" type="button" class="btn btn-outline-success btn-sm ml-1">Inscrever</button>
+                        </div>
+                    </div>
+  
+                </div>
+            </div>
+  
+            </div>
+          </div-->
+
+
+            </div>
+        </div>
+        <!--/Todas as postagens-->
+
+        <!--Minhas Postagens-->
+        <div class="tab-pane fade mt-5" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="card-deck">
+                <div class="card border-success mb-3" style="max-width: 18rem;" *ngFor='let item of user.postagem'>
+                    <div class="card-header bg-transparent border-success ">
+
+                        <small class="text-muted">{{item.comunidade.nome}}
+                        </small>
+                    </div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">{{item.quantidade}}</h5>
+                        <p class="card-text">{{item.categoria}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success">
+                        <div>
+                            <small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date:
+                                'HH:mm'}} </small>
+                        </div>
+
+
+                        <div class="mt-2">
+                            <button [routerLink]="['/postagem-delet', item.id]" type="button"
+                                class="btn mr-3 btn-outline-danger">Excluir</button>
+                            <button [routerLink]="['/postagem-edit', item.id]" type="button" data-toggle="modal"
+                                data-target="#editarPostagem" class="btn btn-outline-warning">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/Minhas Postagens-->

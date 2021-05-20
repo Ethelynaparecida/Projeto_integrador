@@ -28,6 +28,7 @@ import { ComunidadeViewComponent } from './view/comunidade-view/comunidade-view.
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
